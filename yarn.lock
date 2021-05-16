@@ -201,6 +201,13 @@
   dependencies:
     tslib "^2.1.0"
 
+"@angular/fire@^6.1.4":
+  version "6.1.4"
+  resolved "https://registry.yarnpkg.com/@angular/fire/-/fire-6.1.4.tgz#d3923a68336d7177abbb2676731d0aef566b9739"
+  integrity sha512-5u305XnBC041JMrAtczLa0bdprxw7RkXy4kgcRCisPI8maGuiN4XzlwNYX+plCHZCo4R0motxQom//tPTA2edQ==
+  dependencies:
+    tslib "^2.0.0"
+
 "@angular/flex-layout@^11.0.0-beta.33":
   version "11.0.0-beta.33"
   resolved "https://registry.yarnpkg.com/@angular/flex-layout/-/flex-layout-11.0.0-beta.33.tgz#c2d08f90164701b66a62b8c4365b4e22c1e95789"
@@ -219,6 +226,13 @@
   version "12.0.0"
   resolved "https://registry.yarnpkg.com/@angular/language-service/-/language-service-12.0.0.tgz#b404961f60d944ea013833b282c144b3228f439d"
   integrity sha512-LDS1+dOdXUEf0kiqcYnOfXBIs2HAD6vJ5HWb58kq6z/8AHRMvvHiwSV26UlIbnnD+CBnTu36xmbCyZtIJluhqw==
+
+"@angular/material-moment-adapter@^12.0.0":
+  version "12.0.0"
+  resolved "https://registry.yarnpkg.com/@angular/material-moment-adapter/-/material-moment-adapter-12.0.0.tgz#e98aa88c910d45f3b088587fa813c65dd5782546"
+  integrity sha512-KHj28LoEp+LAhu8ohm4RO4ox7yYSO2e3eMYHF2IlX1lZ9k/g62tMbB01QffqroZuHelNdja3aGH0mnwrXUiH4g==
+  dependencies:
+    tslib "^2.1.0"
 
 "@angular/material@^12.0.0":
   version "12.0.0"

@@ -25,6 +25,21 @@
     "mission-control-e2e": {
       "tags": [],
       "implicitDependencies": ["mission-control"]
+    },
+    "ng-mission-control": {
+      "tags": ["type:ngLib", "scope:shared"]
+    },
+    "mission-control-core": {
+      "tags": ["type:ngLib", "scope:shared"]
+    },
+    "ng-material": {
+      "tags": ["type:ngLib", "scope:shared"]
+    },
+    "ng-auth": {
+      "tags": ["type:ngLib", "scope:shared"]
+    },
+    "shared": {
+      "tags": ["type:ngLib", "scope:shared"]
     }
   }
 }
