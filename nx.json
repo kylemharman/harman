@@ -26,19 +26,25 @@
       "tags": [],
       "implicitDependencies": ["mission-control"]
     },
-    "ng-mission-control": {
+    "mission-control-tasks": {
       "tags": ["type:ngLib", "scope:shared"]
     },
     "mission-control-core": {
       "tags": ["type:ngLib", "scope:shared"]
     },
+    "mission-control-auth": {
+      "tags": ["type:ngLib", "scope:shared"]
+    },
+    "mission-control-shared": {
+      "tags": ["type:ngLib", "scope:shared"]
+    },
     "ng-material": {
       "tags": ["type:ngLib", "scope:shared"]
     },
-    "ng-auth": {
+    "ng-shared": {
       "tags": ["type:ngLib", "scope:shared"]
     },
-    "shared": {
+    "utils": {
       "tags": ["type:ngLib", "scope:shared"]
     }
   }

@@ -1,0 +1,10 @@
+<div class="mc-avatar-container" fxFlex fxLayoutAlign="center center">
+  <ng-container
+    *ngIf="userProfileImage$ | async as profileImage; else initials"
+  >
+    <img [src]="profileImage" alt="profile image" />
+  </ng-container>
+  <ng-template #initials>
+    <p *ngIf="userInitials$ | async as initials">{{ initials }}</p>
+  </ng-template>
+</div>

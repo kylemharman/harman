@@ -1,0 +1,78 @@
+<mc-auth-page-container>
+  <mc-auth-form-container title="Welcome Back!">
+    <mc-main-button
+      (click)="googleSignIn()"
+      [fullWidth]="true"
+      type="submit"
+      label="Log in with Google"
+      icon="assets/buttons/google.svg"
+    >
+    </mc-main-button>
+
+    <mc-word-divider label="OR"></mc-word-divider>
+    <!-- TODO - make forms more DRY using nested forms - see bookmark -->
+    <form
+      fxLayout="column"
+      fxLayoutGap="16px"
+      [formGroup]="form"
+      (ngSubmit)="onSubmit()"
+    >
+      <!-- email -->
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          formControlName="email"
+          type="email"
+          placeholder="example@site.com"
+          autocomplete="off"
+        />
+        <mat-error *ngIf="!email.value.length && email.touched">
+          <mat-icon>warning</mat-icon> This field is required!
+        </mat-error>
+        <mat-error
+          *ngIf="email.value.length >= 1 && email.touched && email.invalid"
+        >
+          <mat-icon>warning</mat-icon> Email address invalid!
+        </mat-error>
+      </mat-form-field>
+
+      <!-- password -->
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          formControlName="password"
+          [type]="passwordHidden ? 'password' : 'text'"
+          autocomplete="off"
+          minlength="6"
+        />
+        <mat-icon matSuffix (click)="passwordHidden = !passwordHidden">{{
+          passwordHidden ? 'visibility_off' : 'visibility'
+        }}</mat-icon>
+        <mat-error *ngIf="password.value.length < 8 && password.dirty">
+          <mat-icon>warning</mat-icon> Password must be 8 characters or longer!
+        </mat-error>
+        <mat-error *ngIf="!password.value.length && password.touched">
+          <mat-icon>warning</mat-icon> This field is required!
+        </mat-error>
+      </mat-form-field>
+
+      <mc-main-button
+        [primary]="true"
+        [fullWidth]="true"
+        type="submit"
+        label="Log in"
+        size="large"
+      ></mc-main-button>
+
+      <mat-error *ngIf="serverErrorMessage$ | async as err">
+        {{ err }}
+      </mat-error>
+    </form>
+    <mat-divider></mat-divider>
+    <button mat-button routerLink="/forgot-password">
+      Forgot Password?
+    </button>
+  </mc-auth-form-container>
+</mc-auth-page-container>

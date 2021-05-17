@@ -1,0 +1,16 @@
+<button
+  [type]="type"
+  (click)="onClick.emit($event)"
+  [ngClass]="classes"
+  [ngStyle]="{ 'border-color': borderColor }"
+  fxLayout="row"
+  fxLayoutAlign="center center"
+>
+  <img
+    *ngIf="icon"
+    class="mc-main-button-icon"
+    src="{{ icon }}"
+    alt="{{ label }} button"
+  />
+  {{ label }}
+</button>

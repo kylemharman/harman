@@ -1,0 +1,22 @@
+.quick-select-container {
+  padding-top: 12px;
+}
+
+.calendar-container {
+  border-left: 1px solid #bebebe;
+}
+
+.mat-calendar {
+  height: 250px;
+  max-width: 200px;
+}
+
+.mat-list-base[dense] .mat-list-option {
+  padding: 4px 0;
+  height: fit-content;
+  width: 165px;
+}
+
+.projected-date {
+  color: #bebebe;
+}

@@ -1,0 +1,25 @@
+<div fxLayout="row">
+  <div class="quick-select-container">
+    <mat-selection-list dense [multiple]="false">
+      <mat-list-option
+        *ngFor="let option of quickDates"
+        [value]="option.date"
+        (click)="quickDateClicked(option.moment)"
+      >
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <span>{{ option.date }}</span>
+          <span class="projected-date">
+            {{ option.moment | amDateFormat: option.format }}
+          </span>
+        </div>
+      </mat-list-option>
+    </mat-selection-list>
+  </div>
+  <div class="calendar-container">
+    <mat-calendar
+      #calendar
+      [selected]="date"
+      (selectedChange)="selectedDate($event)"
+    ></mat-calendar>
+  </div>
+</div>

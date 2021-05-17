@@ -1,0 +1,20 @@
+.auth-page-container {
+  width: 100vw;
+  height: 100vh;
+  background-color: #fafafa;
+  background: url('/assets/images/mc-auth-background.svg') center bottom/cover
+    no-repeat;
+}
+
+.auth-page-navbar {
+  padding: 0 30px;
+  height: 100px;
+  position: sticky;
+  flex-shrink: 0;
+  top: 0;
+}
+
+.auth-page-form {
+  padding-bottom: 70px;
+  flex-grow: 1;
+}

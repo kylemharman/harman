@@ -1,0 +1,29 @@
+<mc-auth-page-container>
+  <mc-auth-form-container title="Welcome Aboard!">
+    <div *ngIf="user$ | async as user">
+      <p>
+        We have sent a confirmation email to
+        <strong>{{ user.email }}</strong
+        >.
+      </p>
+      <p>
+        Please check your email and click on the link to verfiy your email
+        address.
+      </p>
+    </div>
+
+    <mc-main-button
+      [primary]="true"
+      [fullWidth]="true"
+      label="Log in"
+      size="large"
+      routerLink="/login"
+    ></mc-main-button>
+
+    <mc-word-divider label="OR"></mc-word-divider>
+
+    <button mat-button (click)="sendVerificationEmail()">
+      Resend verification email
+    </button>
+  </mc-auth-form-container>
+</mc-auth-page-container>

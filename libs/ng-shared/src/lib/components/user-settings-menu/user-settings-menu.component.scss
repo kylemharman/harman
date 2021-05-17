@@ -1,0 +1,21 @@
+.close-button-container {
+  padding-right: 6px;
+}
+
+.menu-container {
+  padding: 0 20px 10px;
+  width: 220px;
+}
+
+mc-avatar {
+  cursor: pointer;
+}
+
+a,
+mc-toggle {
+  cursor: pointer;
+  transition: 0.2s ease-in;
+  &:hover {
+    color: #7b68ee;
+  }
+}

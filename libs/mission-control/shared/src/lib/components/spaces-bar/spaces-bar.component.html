@@ -1,0 +1,62 @@
+<div
+  *ngIf="user$ | async as user"
+  fxLayout="row"
+  fxLayoutAlign="start stretch"
+  style="height: 100%;"
+>
+  <!-- sidenav -->
+  <div
+    fxLayout="column"
+    fxLayoutAlign="space-between center"
+    class="mc-left-sidebar-container"
+  >
+    <div
+      class="mc-left-sidebar-main"
+      fxLayout="column"
+      fxLayoutAlign="start center"
+      fxLayoutGap="10px"
+      fxFlex
+    >
+      <div fxLayoutAlign="center center" class="logo">
+        <div></div>
+      </div>
+      <a
+        [routerLink]="['/', user.id, 'home', 'landing']"
+        routerLinkActive="active"
+      >
+        <svg class="home-icon" viewBox="0 0 24 24">
+          <use xlink:href="assets/icons/home-outline.svg#home-outline" />
+        </svg>
+      </a>
+      <a [routerLink]="['/', user.id, 'tasks']" routerLinkActive="active">
+        <svg class="tasks-icon" viewBox="0 0 24 24">
+          <use
+            xlink:href="assets/icons/check-box-outline.svg#check-box-outline"
+          />
+        </svg>
+      </a>
+      <a
+        [routerLink]="['/', user.id, 'notifications']"
+        routerLinkActive="active"
+      >
+        <svg class="notifications-icon" viewBox="0 0 24 24">
+          <use
+            xlink:href="assets/icons/notifications-outline.svg#notifications-outline"
+          />
+        </svg>
+      </a>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="mc-left-sidebar-user">
+      <mc-user-settings-menu></mc-user-settings-menu>
+    </div>
+  </div>
+
+  <!-- TODO - dark/light mode need more work -->
+  <!-- TODO - remove all inline styles -->
+  <div class="background-test" style="width: 100%; padding: 30px;">
+    <ng-content></ng-content>
+  </div>
+</div>

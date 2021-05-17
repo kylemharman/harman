@@ -20,9 +20,7 @@
               "apps/mission-control/src/favicon.ico",
               "apps/mission-control/src/assets"
             ],
-            "styles": [
-              "apps/mission-control/src/styles.scss"
-            ],
+            "styles": ["apps/mission-control/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -87,9 +85,7 @@
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/mission-control"
-          ],
+          "outputs": ["coverage/apps/mission-control"],
           "options": {
             "jestConfig": "apps/mission-control/jest.config.js",
             "passWithNoTests": true
@@ -118,9 +114,7 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/mission-control-e2e/**/*.{js,ts}"
-            ]
+            "lintFilePatterns": ["apps/mission-control-e2e/**/*.{js,ts}"]
           }
         }
       }
@@ -129,13 +123,11 @@
       "projectType": "library",
       "root": "libs/ng-material",
       "sourceRoot": "libs/ng-material/src",
-      "prefix": "harman",
+      "prefix": "ha",
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/ng-material"
-          ],
+          "outputs": ["coverage/libs/ng-material"],
           "options": {
             "jestConfig": "libs/ng-material/jest.config.js",
             "passWithNoTests": true
@@ -152,19 +144,17 @@
         }
       }
     },
-    "ng-auth": {
+    "ng-shared": {
       "projectType": "library",
-      "root": "libs/ng-auth",
-      "sourceRoot": "libs/ng-auth/src",
+      "root": "libs/ng-shared",
+      "sourceRoot": "libs/ng-shared/src",
       "prefix": "ha",
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/ng-auth"
-          ],
+          "outputs": ["coverage/libs/ng-shared"],
           "options": {
-            "jestConfig": "libs/ng-auth/jest.config.js",
+            "jestConfig": "libs/ng-shared/jest.config.js",
             "passWithNoTests": true
           }
         },
@@ -172,26 +162,24 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/ng-auth/src/**/*.ts",
-              "libs/ng-auth/src/**/*.html"
+              "libs/ng-shared/src/**/*.ts",
+              "libs/ng-shared/src/**/*.html"
             ]
           }
         }
       }
     },
-    "ng-mission-control": {
+    "mission-control-tasks": {
       "projectType": "library",
-      "root": "libs/ng-mission-control",
-      "sourceRoot": "libs/ng-mission-control/src",
+      "root": "libs/mission-control/tasks",
+      "sourceRoot": "libs/mission-control/tasks/src",
       "prefix": "mc",
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/ng-mission-control"
-          ],
+          "outputs": ["coverage/libs/mission-control/tasks"],
           "options": {
-            "jestConfig": "libs/ng-mission-control/jest.config.js",
+            "jestConfig": "libs/mission-control/tasks/jest.config.js",
             "passWithNoTests": true
           }
         },
@@ -199,8 +187,8 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/ng-mission-control/src/**/*.ts",
-              "libs/ng-mission-control/src/**/*.html"
+              "libs/mission-control/tasks/src/**/*.ts",
+              "libs/mission-control/tasks/src/**/*.html"
             ]
           }
         }
@@ -208,17 +196,15 @@
     },
     "mission-control-core": {
       "projectType": "library",
-      "root": "libs/mission-control-core",
-      "sourceRoot": "libs/mission-control-core/src",
-      "prefix": "harman",
+      "root": "libs/mission-control/core",
+      "sourceRoot": "libs/mission-control/core/src",
+      "prefix": "mc",
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/mission-control-core"
-          ],
+          "outputs": ["coverage/libs/mission-control/core"],
           "options": {
-            "jestConfig": "libs/mission-control-core/jest.config.js",
+            "jestConfig": "libs/mission-control/core/jest.config.js",
             "passWithNoTests": true
           }
         },
@@ -226,26 +212,24 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/mission-control-core/src/**/*.ts",
-              "libs/mission-control-core/src/**/*.html"
+              "libs/mission-control/core/src/**/*.ts",
+              "libs/mission-control/core/src/**/*.html"
             ]
           }
         }
       }
     },
-    "shared": {
+    "mission-control-auth": {
       "projectType": "library",
-      "root": "libs/shared",
-      "sourceRoot": "libs/shared/src",
-      "prefix": "harman",
+      "root": "libs/mission-control/auth",
+      "sourceRoot": "libs/mission-control/auth/src",
+      "prefix": "mc",
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/shared"
-          ],
+          "outputs": ["coverage/libs/mission-control/auth"],
           "options": {
-            "jestConfig": "libs/shared/jest.config.js",
+            "jestConfig": "libs/mission-control/auth/jest.config.js",
             "passWithNoTests": true
           }
         },
@@ -253,8 +237,58 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/shared/src/**/*.ts",
-              "libs/shared/src/**/*.html"
+              "libs/mission-control/auth/src/**/*.ts",
+              "libs/mission-control/auth/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "utils": {
+      "projectType": "library",
+      "root": "libs/utils",
+      "sourceRoot": "libs/utils/src",
+      "prefix": "ha",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/utils"],
+          "options": {
+            "jestConfig": "libs/utils/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/utils/src/**/*.ts",
+              "libs/utils/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "mission-control-shared": {
+      "projectType": "library",
+      "root": "libs/mission-control/shared",
+      "sourceRoot": "libs/mission-control/shared/src",
+      "prefix": "mc",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mission-control/shared"],
+          "options": {
+            "jestConfig": "libs/mission-control/shared/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/mission-control/shared/src/**/*.ts",
+              "libs/mission-control/shared/src/**/*.html"
             ]
           }
         }

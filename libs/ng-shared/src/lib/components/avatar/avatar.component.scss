@@ -1,0 +1,17 @@
+.mc-avatar-container {
+  overflow: hidden;
+  border-radius: 50%;
+  background-color: #40bc86;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  p {
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 600;
+  }
+}

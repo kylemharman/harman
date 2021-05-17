@@ -1,0 +1,9 @@
+<div fxLayout="row" fxLayoutAlign="start center">
+  <div fxFlex class="mc-toggle-label" (click)="toggle.click()">
+    <ng-content></ng-content>
+  </div>
+  <label [ngClass]="toggleClasses">
+    <input #toggle type="checkbox" (change)="onToggle($event)" [checked]="on" />
+    <span [ngClass]="sliderClasses"></span>
+  </label>
+</div>

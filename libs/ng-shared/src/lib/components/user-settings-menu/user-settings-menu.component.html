@@ -1,0 +1,24 @@
+<mc-avatar [matMenuTriggerFor]="userSettings"></mc-avatar>
+<mat-menu #userSettings>
+  <span
+    fxLayout="row"
+    fxLayoutAlign="end start"
+    class="close-button-container"
+    (click)="$event.stopPropagation()"
+  >
+    <mc-close-button (click)="closeMenu()" size="meduim"></mc-close-button>
+  </span>
+  <div
+    *ngIf="user$ | async as user"
+    class="menu-container mat-small"
+    fxLayout="column"
+    fxLayoutGap="12px"
+    (click)="$event.stopPropagation()"
+  >
+    <a [routerLink]="['/', user.id, 'settings', 'profile']">My Settings</a>
+    <a [routerLink]="['/', user.id, 'notifications']">Notifications</a>
+    <a (click)="logout()">Logout</a>
+    <mat-divider></mat-divider>
+    <mc-toggle (toggle)="darkMode($event)">Dark Mode</mc-toggle>
+  </div>
+</mat-menu>
