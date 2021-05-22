@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'mc-toggle',
+  selector: 'ha-toggle',
   templateUrl: './toggle.component.html',
   styleUrls: ['./toggle.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

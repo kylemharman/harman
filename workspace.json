@@ -169,7 +169,7 @@
         }
       }
     },
-    "mission-control-tasks": {
+    "mission-control/tasks": {
       "projectType": "library",
       "root": "libs/mission-control/tasks",
       "sourceRoot": "libs/mission-control/tasks/src",
@@ -194,32 +194,7 @@
         }
       }
     },
-    "mission-control-core": {
-      "projectType": "library",
-      "root": "libs/mission-control/core",
-      "sourceRoot": "libs/mission-control/core/src",
-      "prefix": "mc",
-      "targets": {
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/mission-control/core"],
-          "options": {
-            "jestConfig": "libs/mission-control/core/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/mission-control/core/src/**/*.ts",
-              "libs/mission-control/core/src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
-    "mission-control-auth": {
+    "mission-control/auth": {
       "projectType": "library",
       "root": "libs/mission-control/auth",
       "sourceRoot": "libs/mission-control/auth/src",
@@ -269,7 +244,7 @@
         }
       }
     },
-    "mission-control-shared": {
+    "mission-control/shared": {
       "projectType": "library",
       "root": "libs/mission-control/shared",
       "sourceRoot": "libs/mission-control/shared/src",
@@ -290,6 +265,27 @@
               "libs/mission-control/shared/src/**/*.ts",
               "libs/mission-control/shared/src/**/*.html"
             ]
+          }
+        }
+      }
+    },
+    "mission-control/core": {
+      "root": "libs/mission-control/core",
+      "sourceRoot": "libs/mission-control/core/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/mission-control/core/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mission-control/core"],
+          "options": {
+            "jestConfig": "libs/mission-control/core/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }

@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'mc-main-button',
+  selector: 'ha-main-button',
   templateUrl: './main-button.component.html',
   styleUrls: ['./main-button.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -20,7 +20,7 @@ export class MainButtonComponent {
   @Input() type: 'submit' | 'button' = 'button';
   @Input() size: 'small' | 'medium' | 'large' = 'medium';
   @Input() icon?: string;
-  @Output() onClick = new EventEmitter<void>();
+  @Output() onClick = new EventEmitter<MouseEvent>();
 
   public get classes(): string[] {
     const mode = this.primary

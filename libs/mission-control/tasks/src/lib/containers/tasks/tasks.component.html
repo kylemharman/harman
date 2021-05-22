@@ -1,0 +1,7 @@
+<mc-create-task (taskName)="createTask($event)"></mc-create-task>
+<mc-task-list
+  [tasks]="tasks$ | async"
+  (taskOrderChanges)="sortTasks($event)"
+  (taskChanges)="updateTask($event)"
+></mc-task-list>
+<router-outlet></router-outlet>

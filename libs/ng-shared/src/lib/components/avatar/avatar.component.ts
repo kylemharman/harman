@@ -7,10 +7,10 @@ import {
 import { first, last } from 'lodash';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { AuthFacade } from 'src/app/core/auth/store/facades/auth.facade';
+import { AuthFacade } from '@harman/mission-control/auth';
 
 @Component({
-  selector: 'mc-avatar',
+  selector: 'ha-avatar',
   templateUrl: './avatar.component.html',
   styleUrls: ['./avatar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

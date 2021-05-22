@@ -7,7 +7,7 @@ module.exports = {
     '<rootDir>/libs/core',
     '<rootDir>/libs/utils',
     '<rootDir>/libs/ng-shared',
-    '<rootDir>/libs/mission-control/core',
     '<rootDir>/libs/mission-control/shared',
+    '<rootDir>/libs/mission-control/core',
   ],
 };

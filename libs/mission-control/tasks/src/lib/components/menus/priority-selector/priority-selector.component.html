@@ -1,0 +1,33 @@
+<button
+  class="priority-menu-trigger"
+  mat-icon-button
+  [matMenuTriggerFor]="priorityMenu"
+  disableRipple="true"
+>
+  <mat-icon [tooltip]="tooltip" [ngClass]="[size, priority, outline]">
+    {{ flagIcon }}
+  </mat-icon>
+</button>
+
+<mat-menu #priorityMenu="matMenu">
+  <button mat-menu-item (click)="priorityChange.emit(taskPriority.Urgent)">
+    <mat-icon class="urgent">flag</mat-icon>
+    <span>Urgent</span>
+  </button>
+  <button mat-menu-item (click)="priorityChange.emit(taskPriority.High)">
+    <mat-icon class="high">flag</mat-icon>
+    <span>High</span>
+  </button>
+  <button mat-menu-item (click)="priorityChange.emit(taskPriority.Normal)">
+    <mat-icon class="normal">flag</mat-icon>
+    <span>Normal</span>
+  </button>
+  <button mat-menu-item (click)="priorityChange.emit(taskPriority.Low)">
+    <mat-icon class="low">flag</mat-icon>
+    <span>Low</span>
+  </button>
+  <button mat-menu-item (click)="priorityChange.emit(taskPriority.None)">
+    <mat-icon class="clear">close</mat-icon>
+    <span>Clear</span>
+  </button>
+</mat-menu>

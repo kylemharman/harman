@@ -1,0 +1,36 @@
+.mat-icon-button {
+  width: 22px;
+  height: 22px;
+  line-height: 0px;
+}
+
+.small {
+  font-size: 16px;
+}
+
+.large {
+  font-size: 22px;
+}
+
+.hover {
+  &:hover {
+    color: #008cff;
+  }
+}
+
+.urgent,
+.clear {
+  color: #f44336;
+}
+.high {
+  color: #fecb01;
+}
+.normal {
+  color: #008cff;
+}
+.low {
+  color: #bebebe;
+}
+.none {
+  color: #bebebe;
+}

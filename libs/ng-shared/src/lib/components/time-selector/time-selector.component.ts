@@ -12,10 +12,11 @@ import { FormControl } from '@angular/forms';
 import { MatAutocompleteTrigger } from '@angular/material/autocomplete';
 import { Observable, Subject } from 'rxjs';
 import { map, startWith, takeUntil } from 'rxjs/operators';
-import { getIntervals, ITimestamp, toMoment } from '../../helpers/time';
+import { getIntervals, ITimestamp, toMoment } from '@harman/utils';
+import { MatFormFieldAppearance } from '@angular/material/form-field';
 
 @Component({
-  selector: 'mc-time-selector',
+  selector: 'ha-time-selector',
   templateUrl: './time-selector.component.html',
   styleUrls: ['./time-selector.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -26,7 +27,7 @@ export class TimeSelectorComponent implements OnDestroy, OnInit {
   @Input() label: string;
   @Input() placeholder: string;
   @Input() interval: number = 15;
-  @Input() appearance: string = 'outline';
+  @Input() appearance: MatFormFieldAppearance = 'outline';
   @Output() timeChange = new EventEmitter<string>();
 
   @ViewChild('timeInput', { read: MatAutocompleteTrigger })

@@ -12,7 +12,18 @@
             "enforceBuildableLibDependency": true,
             "allow": [],
             "depConstraints": [
-              { "sourceTag": "*", "onlyDependOnLibsWithTags": ["*"] }
+              {
+                "sourceTag": "scope:mission-control",
+                "onlyDependOnLibsWithTags": [
+                  "scope:mission-control", "scope:shared"
+                ]
+              },
+              {
+                "sourceTag": "scope:shared",
+                "onlyDependOnLibsWithTags": [
+                  "scope:shared"
+                ]
+              },
             ]
           }
         ]

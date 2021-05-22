@@ -4,8 +4,8 @@ import firebase from 'firebase';
 import * as moment from 'moment';
 import { from, Observable, Subject } from 'rxjs';
 import { toTimestamp } from '@harman/utils';
-import { IUser, RootCollection } from '@harman/core';
 import { FirestoreService } from '@harman/ng-shared';
+import { IUser, RootCollection } from '@harman/mission-control/core';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {

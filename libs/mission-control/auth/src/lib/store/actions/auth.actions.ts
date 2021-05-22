@@ -1,5 +1,6 @@
+import { IUser } from '@harman/mission-control/core';
 import { createAction, props } from '@ngrx/store';
-import { IUser } from 'src/app/core/models/user';
+import firebase from 'firebase';
 
 export const signUpRequested = createAction(
   '[Auth] Sign Up Requested',

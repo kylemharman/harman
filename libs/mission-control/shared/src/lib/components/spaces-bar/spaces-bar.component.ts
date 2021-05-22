@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { AuthFacade } from 'src/app/core/auth/store/facades/auth.facade';
+import { AuthFacade } from '@harman/mission-control/auth';
 
 @Component({
   selector: 'mc-spaces-bar',

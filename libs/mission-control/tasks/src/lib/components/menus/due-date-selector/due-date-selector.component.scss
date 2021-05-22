@@ -1,0 +1,23 @@
+@import '../../../../../styles/mixin';
+
+.mat-icon-button {
+  @include mat-icon-button-size(16px);
+}
+
+.mat-icon {
+  color: #bebebe;
+
+  &:hover {
+    color: #008cff;
+  }
+}
+
+.due-date-header {
+  border-bottom: 1px solid #bebebe;
+  padding: 8px;
+}
+
+.selected-container {
+  border: 1px solid #bebebe;
+  @include border-radius();
+}

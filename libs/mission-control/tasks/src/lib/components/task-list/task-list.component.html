@@ -1,0 +1,8 @@
+<div cdkDropList (cdkDropListDropped)="drop($event)">
+  <div cdkDrag *ngFor="let task of tasks">
+    <mc-task-row
+      [task]="task"
+      (taskChanges)="taskChanges.emit($event)"
+    ></mc-task-row>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+@import 'material-colour-pallets';
+
+$primary: mat-palette($mc-blue);
+$accent: mat-palette($mc-pink);
+$warn: mat-palette($mat-red);
+$theme: mat-light-theme($primary, $accent, $warn);

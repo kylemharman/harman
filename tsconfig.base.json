@@ -17,20 +17,17 @@
     "paths": {
       "@harman/ng-material": ["libs/ng-material/src/index.ts"],
       "@harman/ng-shared": ["libs/ng-shared/src/index.ts"],
-      "@harman/core": ["libs/core/src/index.ts"],
+      "@harman/utils": ["libs/utils/src/index.ts"],
       "@harman/mission-control/tasks": [
         "libs/mission-control/tasks/src/index.ts"
-      ],
-      "@harman/mission-control/core": [
-        "libs/mission-control/core/src/index.ts"
       ],
       "@harman/mission-control/auth": [
         "libs/mission-control/auth/src/index.ts"
       ],
-      "@harman/utils": ["libs/utils/src/index.ts"],
       "@harman/mission-control/shared": [
         "libs/mission-control/shared/src/index.ts"
-      ]
+      ],
+      "@harman/mission-control/core": ["libs/mission-control/core/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"],

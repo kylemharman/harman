@@ -1,0 +1,29 @@
+<div fxLayout="row" fxLayoutAlign="start center" class="task-header">
+  <mc-priority-selector
+    [priority]="task.priority"
+    (priorityChange)="setPriority($event)"
+    size="large"
+  ></mc-priority-selector>
+  <span fxFlex></span>
+  <ha-close-button (click)="close()" size="large"></ha-close-button>
+</div>
+
+<mat-divider></mat-divider>
+
+<div class="task-container" fxLayout="column" fxLayoutGap="12px">
+  <input
+    matInput
+    autocomplete="chrome-off"
+    [(ngModel)]="task.name"
+    value="{{ task.name }}"
+  />
+
+  <textarea
+    matInput
+    placeholder="Description"
+    cdkTextareaAutosize
+    [(ngModel)]="task.description"
+    value="{{ task.description }}"
+  >
+  </textarea>
+</div>

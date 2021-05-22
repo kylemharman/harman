@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { IUser } from '../../../models/user';
+import { IUser } from '@harman/mission-control/core';
 import { AuthActions } from '../actions';
 
 export const authFeatureKey = 'auth';

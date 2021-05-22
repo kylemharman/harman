@@ -20,32 +20,32 @@
   },
   "projects": {
     "mission-control": {
-      "tags": []
+      "tags": ["scope:mission-control"]
     },
     "mission-control-e2e": {
-      "tags": [],
+      "tags": ["scope:mission-control"],
       "implicitDependencies": ["mission-control"]
     },
-    "mission-control-tasks": {
-      "tags": ["type:ngLib", "scope:shared"]
+    "mission-control/core": {
+      "tags": ["scope:mission-control"]
     },
-    "mission-control-core": {
-      "tags": ["type:ngLib", "scope:shared"]
+    "mission-control/tasks": {
+      "tags": ["scope:mission-control"]
     },
-    "mission-control-auth": {
-      "tags": ["type:ngLib", "scope:shared"]
+    "mission-control/auth": {
+      "tags": ["scope:mission-control"]
     },
-    "mission-control-shared": {
-      "tags": ["type:ngLib", "scope:shared"]
+    "mission-control/shared": {
+      "tags": ["scope:mission-control"]
     },
     "ng-material": {
-      "tags": ["type:ngLib", "scope:shared"]
+      "tags": ["scope:shared"]
     },
     "ng-shared": {
-      "tags": ["type:ngLib", "scope:shared"]
+      "tags": ["scope:shared"]
     },
     "utils": {
-      "tags": ["type:ngLib", "scope:shared"]
+      "tags": ["scope:shared"]
     }
   }
 }

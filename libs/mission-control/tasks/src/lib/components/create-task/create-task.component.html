@@ -1,0 +1,18 @@
+<div>
+  <mat-form-field appearance="standard" fxFlex>
+    <input
+      [formControl]="name"
+      matInput
+      placeholder="New Task..."
+      (keydown.enter)="taskNameSubmit()"
+    />
+    <button
+      mat-button
+      matSuffix
+      [disabled]="!name.value"
+      (click)="taskNameSubmit()"
+    >
+      Create
+    </button>
+  </mat-form-field>
+</div>

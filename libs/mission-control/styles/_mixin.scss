@@ -1,0 +1,19 @@
+@mixin mat-icon-size($size) {
+  width: $size;
+  height: $size;
+  font-size: $size;
+  line-height: 1;
+}
+
+@mixin mat-icon-button-size($size) {
+  width: $size;
+  height: $size;
+  line-height: 0;
+  .mat-icon {
+    @include mat-icon-size($size);
+  }
+}
+
+@mixin border-radius() {
+  border-radius: 4px;
+}

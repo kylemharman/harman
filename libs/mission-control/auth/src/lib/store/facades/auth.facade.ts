@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import * as firebase from 'firebase';
+import firebase from 'firebase';
 import { AuthActions } from '../actions';
 import { AuthState } from '../reducers';
 import {

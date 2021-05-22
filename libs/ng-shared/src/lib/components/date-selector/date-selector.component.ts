@@ -9,11 +9,11 @@ import {
 } from '@angular/core';
 import { MatCalendar } from '@angular/material/datepicker';
 import * as moment from 'moment';
-import { ITimestamp, toMoment } from '../../helpers/time';
+import { ITimestamp, toMoment } from '@harman/utils';
 import { IQuickDate, quickDate } from './date-selector';
 
 @Component({
-  selector: 'mc-date-selector',
+  selector: 'ha-date-selector',
   templateUrl: './date-selector.component.html',
   styleUrls: ['./date-selector.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

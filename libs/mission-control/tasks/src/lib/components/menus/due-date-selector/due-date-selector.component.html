@@ -1,0 +1,31 @@
+<button mat-icon-button disableRipple="true" [matMenuTriggerFor]="dueDateMenu">
+  <mat-icon tooltip="Due date">event</mat-icon>
+</button>
+
+<mat-menu #dueDateMenu="matMenu">
+  <div fxLayout="column" (click)="$event.stopPropagation()">
+    <div class="due-date-header">
+      <div
+        fxLayout="row"
+        fxLayoutAlign="start center"
+        fxLayoutGap="8px"
+        class="selected-container"
+      >
+        <span class="mat-small">{{ date | amDateFormat: 'D/M/YY' }}</span>
+        <ha-close-button *ngIf="date" (click)="clearDate()"></ha-close-button>
+        <ha-time-selector
+          *ngIf="date"
+          [dueDate]="dueDate"
+          ="none"
+          placeholder="Select time"
+          (timeChange)="selectedTime($event)"
+        ></ha-time-selector>
+      </div>
+    </div>
+
+    <ha-date-selector
+      [dueDate]="dueDate"
+      (dateChange)="selectedDate($event)"
+    ></ha-date-selector>
+  </div>
+</mat-menu>

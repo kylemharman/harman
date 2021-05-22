@@ -1,0 +1,55 @@
+@mixin mat-icon-config {
+  font-size: 16px;
+  color: #bebebe;
+}
+
+.task-row-container {
+  transition: 1s ease-in-out;
+
+  &:hover {
+    .task-row-drag {
+      opacity: 1;
+    }
+  }
+  .task-row-drag {
+    opacity: 0;
+  }
+}
+
+.task-row-info {
+  padding: 10px;
+  margin: 4px 0;
+  background-color: var(--background);
+  border-radius: 4px;
+
+  .task-row-name {
+    &:hover {
+      color: #008cff;
+      cursor: pointer;
+    }
+  }
+
+  .mat-icon-button {
+    width: 22px;
+    height: 22px;
+    line-height: 0px;
+  }
+
+  .mat-icon {
+    @include mat-icon-config;
+
+    &:hover {
+      color: #008cff; // TODO set up and use color pallets properly
+    }
+  }
+}
+
+.task-row-drag {
+  &:hover {
+    cursor: move;
+  }
+
+  .mat-icon {
+    @include mat-icon-config;
+  }
+}

@@ -6,7 +6,7 @@
     class="close-button-container"
     (click)="$event.stopPropagation()"
   >
-    <mc-close-button (click)="closeMenu()" size="meduim"></mc-close-button>
+    <ha-close-button (click)="closeMenu()" size="medium"></ha-close-button>
   </span>
   <div
     *ngIf="user$ | async as user"
@@ -18,7 +18,7 @@
     <a [routerLink]="['/', user.id, 'settings', 'profile']">My Settings</a>
     <a [routerLink]="['/', user.id, 'notifications']">Notifications</a>
     <a (click)="logout()">Logout</a>
-    <mat-divider></mat-divider>
-    <mc-toggle (toggle)="darkMode($event)">Dark Mode</mc-toggle>
+    <!-- <mat-divider></mat-divider> -->
+    <!-- <mc-toggle (toggle)="darkMode($event)">Dark Mode</mc-toggle> -->
   </div>
 </mat-menu>
