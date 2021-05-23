@@ -13,7 +13,7 @@ export class UserSettingsMenuComponent {
   user$ = this._authStore.user$;
   @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
 
-  constructor(private _authStore: AuthFacade) {}
+  constructor(private _authStore: AuthFacade, private _theme: ThemeService) {}
 
   closeMenu(): void {
     this.trigger.closeMenu();
@@ -23,11 +23,11 @@ export class UserSettingsMenuComponent {
     this._authStore.logout();
   }
 
-  // darkMode(value: boolean): void {
-  //   if (value) {
-  //     return this._theme.changeTheme('dark-theme');
-  //   }
+  darkMode(value: boolean): void {
+    if (value) {
+      return this._theme.changeTheme('dark-theme');
+    }
 
-  //   return this._theme.changeTheme('light-theme');
-  // }
+    return this._theme.changeTheme('light-theme');
+  }
 }

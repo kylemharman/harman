@@ -13,10 +13,10 @@
       >
         <span class="mat-small">{{ date | amDateFormat: 'D/M/YY' }}</span>
         <ha-close-button *ngIf="date" (click)="clearDate()"></ha-close-button>
+        <!-- appearance="none" -->
         <ha-time-selector
           *ngIf="date"
           [dueDate]="dueDate"
-          ="none"
           placeholder="Select time"
           (timeChange)="selectedTime($event)"
         ></ha-time-selector>

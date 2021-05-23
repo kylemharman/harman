@@ -18,7 +18,7 @@
     <a [routerLink]="['/', user.id, 'settings', 'profile']">My Settings</a>
     <a [routerLink]="['/', user.id, 'notifications']">Notifications</a>
     <a (click)="logout()">Logout</a>
-    <!-- <mat-divider></mat-divider> -->
-    <!-- <ha-toggle (toggle)="darkMode($event)">Dark Mode</ha-toggle> -->
+    <mat-divider></mat-divider>
+    <ha-toggle (toggle)="darkMode($event)">Dark Mode</ha-toggle>
   </div>
 </mat-menu>
