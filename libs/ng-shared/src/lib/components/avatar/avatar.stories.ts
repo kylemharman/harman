@@ -59,7 +59,7 @@ export const avatatWithInitals = () => ({
       ],
     }),
   ],
-  template: '<mc-avatar></mc-avatar>',
+  template: '<ha-avatar></ha-avatar>',
 });
 
 export const avatatWithImage = () => ({
@@ -79,5 +79,5 @@ export const avatatWithImage = () => ({
       ],
     }),
   ],
-  template: '<mc-avatar></mc-avatar>',
+  template: '<ha-avatar></ha-avatar>',
 });

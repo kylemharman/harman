@@ -1,15 +1,15 @@
 <mc-auth-page-container [login]="false">
   <mc-auth-form-container title="Let's do this!">
-    <mc-main-button
+    <ha-main-button
       (click)="googleSignUp()"
       [fullWidth]="true"
       type="submit"
       label="Sign up with Google"
       icon="assets/buttons/google.svg"
     >
-    </mc-main-button>
+    </ha-main-button>
 
-    <mc-word-divider label="OR"></mc-word-divider>
+    <ha-word-divider label="OR"></ha-word-divider>
 
     <form
       fxLayout="column"
@@ -74,13 +74,13 @@
         <mat-hint align="end">{{ password.value.length }}/8</mat-hint>
       </mat-form-field>
 
-      <mc-main-button
+      <ha-main-button
         [primary]="true"
         [fullWidth]="true"
         type="submit"
         label="Get started!"
         size="large"
-      ></mc-main-button>
+      ></ha-main-button>
 
       <mat-error *ngIf="serverErrorMessage$ | async as err">
         {{ err }}

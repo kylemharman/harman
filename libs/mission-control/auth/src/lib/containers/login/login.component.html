@@ -1,15 +1,15 @@
 <mc-auth-page-container>
   <mc-auth-form-container title="Welcome Back!">
-    <mc-main-button
+    <ha-main-button
       (click)="googleSignIn()"
       [fullWidth]="true"
       type="submit"
       label="Log in with Google"
       icon="assets/buttons/google.svg"
     >
-    </mc-main-button>
+    </ha-main-button>
 
-    <mc-word-divider label="OR"></mc-word-divider>
+    <ha-word-divider label="OR"></ha-word-divider>
     <!-- TODO - make forms more DRY using nested forms - see bookmark -->
     <form
       fxLayout="column"
@@ -58,21 +58,19 @@
         </mat-error>
       </mat-form-field>
 
-      <mc-main-button
+      <ha-main-button
         [primary]="true"
         [fullWidth]="true"
         type="submit"
         label="Log in"
         size="large"
-      ></mc-main-button>
+      ></ha-main-button>
 
       <mat-error *ngIf="serverErrorMessage$ | async as err">
         {{ err }}
       </mat-error>
     </form>
     <mat-divider></mat-divider>
-    <button mat-button routerLink="/forgot-password">
-      Forgot Password?
-    </button>
+    <button mat-button routerLink="/forgot-password">Forgot Password?</button>
   </mc-auth-form-container>
 </mc-auth-page-container>

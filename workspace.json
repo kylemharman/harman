@@ -5,7 +5,7 @@
       "projectType": "application",
       "root": "apps/mission-control",
       "sourceRoot": "apps/mission-control/src",
-      "prefix": "harman",
+      "prefix": "mc",
       "targets": {
         "build": {
           "executor": "@angular-devkit/build-angular:browser",
@@ -20,7 +20,10 @@
               "apps/mission-control/src/favicon.ico",
               "apps/mission-control/src/assets"
             ],
-            "styles": ["apps/mission-control/src/styles.scss"],
+            "stylePreprocessorOptions": {
+              "includePaths": ["libs"]
+            },
+            "styles": ["libs/mission-control/styles/theme.scss"],
             "scripts": []
           },
           "configurations": {

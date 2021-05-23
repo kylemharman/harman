@@ -14,3 +14,14 @@
 @include angular-material-typography($typography);
 
 @include angular-material-theme($theme);
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}

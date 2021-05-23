@@ -1,4 +1,4 @@
-<mc-avatar [matMenuTriggerFor]="userSettings"></mc-avatar>
+<ha-avatar [matMenuTriggerFor]="userSettings"></ha-avatar>
 <mat-menu #userSettings>
   <span
     fxLayout="row"
@@ -19,6 +19,6 @@
     <a [routerLink]="['/', user.id, 'notifications']">Notifications</a>
     <a (click)="logout()">Logout</a>
     <!-- <mat-divider></mat-divider> -->
-    <!-- <mc-toggle (toggle)="darkMode($event)">Dark Mode</mc-toggle> -->
+    <!-- <ha-toggle (toggle)="darkMode($event)">Dark Mode</ha-toggle> -->
   </div>
 </mat-menu>

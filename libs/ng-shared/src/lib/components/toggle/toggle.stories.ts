@@ -43,6 +43,6 @@ toggleLarge.args = {
 export const toggleWithLabel = () => ({
   template: `
     <div style="width: 200px;">
-      <mc-toggle>Toggle Label</mc-toggle>
+      <ha-toggle>Toggle Label</ha-toggle>
     </div>`,
 });

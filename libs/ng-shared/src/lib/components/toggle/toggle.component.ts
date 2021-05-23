@@ -23,7 +23,7 @@ export class ToggleComponent {
   }
 
   public get toggleClasses(): string[] {
-    return ['mc-toggle', `mc-toggle-${this.size}`];
+    return ['ha-toggle', `ha-toggle-${this.size}`];
   }
   public get sliderClasses(): string[] {
     return ['mc-slider', `mc-slider-${this.size}`];

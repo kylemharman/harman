@@ -17,6 +17,6 @@ export class CloseButtonComponent {
   @Output() onClick = new EventEmitter<MouseEvent>();
 
   public get classes(): string[] {
-    return [`mc-close-button-${this.size}`];
+    return [`ha-close-button-${this.size}`];
   }
 }

@@ -1,4 +1,4 @@
-.mc-main-button {
+.ha-main-button {
   font-weight: 600;
   border: 0;
   border-radius: 4px;
@@ -6,17 +6,17 @@
   display: inline-block;
 }
 
-.mc-main-button-fullwidth {
+.ha-main-button-fullwidth {
   width: 100%;
 }
 
-.mc-main-button-icon {
+.ha-main-button-icon {
   width: 30px;
   height: 30px;
   margin-right: 10px;
 }
 
-.mc-main-button-primary {
+.ha-main-button-primary {
   color: #ffffff;
   background: rgb(0, 140, 255);
   background: linear-gradient(
@@ -26,7 +26,7 @@
   );
 }
 
-.mc-main-button-secondary {
+.ha-main-button-secondary {
   color: #000000;
   border-width: 1px;
   border-style: solid;
@@ -34,17 +34,17 @@
   background-color: transparent;
 }
 
-.mc-main-button-small {
+.ha-main-button-small {
   font-size: 12px;
   padding: 8px 14px;
 }
 
-.mc-main-button-medium {
+.ha-main-button-medium {
   font-size: 16px;
   padding: 10px 20px;
 }
 
-.mc-main-button-large {
+.ha-main-button-large {
   font-size: 18px;
   padding: 14px 24px;
 }
