@@ -52,6 +52,5 @@ import * as fromTasks from './store/reducers';
     PrioritySelectorComponent,
   ],
   providers: [TasksService, TaskFacade, TaskResolver, TasksResolver],
-  entryComponents: [TaskDialogComponent, TaskEntryDialogComponent],
 })
 export class MissionControlTasksModule {}

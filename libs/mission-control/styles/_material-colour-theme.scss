@@ -1,6 +1,16 @@
-@import 'material-colour-pallets';
+@use '~@angular/material' as mat;
+@use './material-colour-pallets' as pallets;
 
-$primary: mat-palette($mc-blue);
-$accent: mat-palette($mc-pink);
-$warn: mat-palette($mat-red);
-$theme: mat-light-theme($primary, $accent, $warn);
+$primary: mat.define-palette(pallets.$mc-blue);
+$accent: mat.define-palette(pallets.$mc-pink);
+$warn: mat.define-palette(mat.$red-palette);
+
+$light-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $primary,
+      accent: $accent,
+      warn: $warn,
+    ),
+  )
+);

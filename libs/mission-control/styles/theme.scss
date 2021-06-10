@@ -1,5 +1,7 @@
-@import '~@angular/material/theming';
-@import 'typography';
+@use '~@angular/material' as mat;
+@use './material-colour-theme' as theme;
+@use './typography' as typography;
+
 @import 'ng2-tooltip';
 @import 'material-colour-theme';
 @import 'material-styles';
@@ -7,19 +9,17 @@
 @import 'dark-theme';
 @import 'mixin';
 
-@include mat-core();
-
-@include mat-base-typography($typography);
-@include mat-checkbox-typography($typography);
-@include angular-material-typography($typography);
-
-@include angular-material-theme($theme);
+@include mat.core(typography.$typography-config);
+@include mat.core-theme(theme.$light-theme);
+@include mat.all-component-themes(theme.$light-theme);
 
 html,
 body {
   height: 100%;
   margin: 0;
   padding: 0;
+  // TODO - this is only here for mat-dialogs.
+  font-family: 'Poppins', sans-serif;
 }
 a {
   text-decoration: none;
