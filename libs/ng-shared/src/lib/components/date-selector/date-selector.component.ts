@@ -20,13 +20,13 @@ import { IQuickDate, quickDate } from './date-selector';
 })
 export class DateSelectorComponent implements OnInit {
   @ViewChild(MatCalendar) calendar: MatCalendar<moment.Moment>;
-  @Input() dueDate: ITimestamp;
+  @Input() dateInput: ITimestamp;
   @Output() dateChange = new EventEmitter<moment.Moment>();
   date: moment.Moment | undefined;
   quickDates: IQuickDate[] = quickDate;
 
   ngOnInit(): void {
-    this.date = this._getDateFromDueDate();
+    this.date = this._getDateFromTimestamp();
   }
 
   quickDateClicked(moment: moment.Moment): void {
@@ -40,10 +40,10 @@ export class DateSelectorComponent implements OnInit {
     this.dateChange.emit(this.date);
   }
 
-  private _getDateFromDueDate(): moment.Moment | undefined {
-    if (!this.dueDate) return undefined;
+  private _getDateFromTimestamp(): moment.Moment | undefined {
+    if (!this.dateInput) return undefined;
 
-    const date = toMoment(this.dueDate);
+    const date = toMoment(this.dateInput);
     this.dateChange.emit(date);
     return date;
   }

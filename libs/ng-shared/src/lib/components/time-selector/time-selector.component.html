@@ -1,20 +1,19 @@
 <mat-form-field [appearance]="appearance">
   <mat-label *ngIf="label">{{ label }}</mat-label>
   <input
-    #timeInput
     type="text"
     matInput
     [placeholder]="placeholder"
-    [formControl]="time"
+    [formControl]="timeControl"
     [matAutocomplete]="auto"
   />
   <button
-    *ngIf="timeInput.value"
+    *ngIf="timeControl.value"
     matSuffix
     mat-icon-button
     aria-label="Clear"
     tooltip="Clear"
-    (click)="time.setValue('')"
+    (click)="timeControl.setValue('')"
   >
     <mat-icon>close</mat-icon>
   </button>

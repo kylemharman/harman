@@ -15,9 +15,5 @@
 .due-date-header {
   border-bottom: 1px solid #bebebe;
   padding: 8px;
-}
-
-.selected-container {
-  border: 1px solid #bebebe;
-  @include border-radius();
+  height: 36px;
 }

@@ -5,26 +5,19 @@
 <mat-menu #dueDateMenu="matMenu">
   <div fxLayout="column" (click)="$event.stopPropagation()">
     <div class="due-date-header">
-      <div
-        fxLayout="row"
-        fxLayoutAlign="start center"
-        fxLayoutGap="8px"
-        class="selected-container"
-      >
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
         <span class="mat-small">{{ date | amDateFormat: 'D/M/YY' }}</span>
-        <ha-close-button *ngIf="date" (click)="clearDate()"></ha-close-button>
-        <!-- appearance="none" -->
+        <ha-close-button (click)="clearDate()"></ha-close-button>
         <ha-time-selector
-          *ngIf="date"
-          [dueDate]="dueDate"
           placeholder="Select time"
+          [timeInput]="dueDate"
           (timeChange)="selectedTime($event)"
         ></ha-time-selector>
       </div>
     </div>
 
     <ha-date-selector
-      [dueDate]="dueDate"
+      [dateInput]="dueDate"
       (dateChange)="selectedDate($event)"
     ></ha-date-selector>
   </div>

@@ -23,34 +23,34 @@ import { MatFormFieldAppearance } from '@angular/material/form-field';
 })
 export class TimeSelectorComponent implements OnDestroy, OnInit {
   private _onDestroy$: Subject<void> = new Subject();
-  @Input() dueDate: ITimestamp;
+  @Input() timeInput: ITimestamp;
   @Input() label: string;
   @Input() placeholder: string;
   @Input() interval: number = 15;
   @Input() appearance: MatFormFieldAppearance = 'outline';
   @Output() timeChange = new EventEmitter<string>();
 
-  @ViewChild('timeInput', { read: MatAutocompleteTrigger })
-  timeInput: MatAutocompleteTrigger;
+  // @ViewChild('timeInput', { read: MatAutocompleteTrigger })
+  // timeInput: MatAutocompleteTrigger;
 
-  time: FormControl = new FormControl();
+  timeControl: FormControl = new FormControl();
   timeInterval: string[];
   filteredOptions$: Observable<string[]>;
 
   constructor() {
     this.timeInterval = getIntervals(this.interval);
-    this.filteredOptions$ = this.time.valueChanges.pipe(
+    this.filteredOptions$ = this.timeControl.valueChanges.pipe(
       startWith(''),
       map((value) => this._filterTimes(value))
     );
 
-    this.time.valueChanges
+    this.timeControl.valueChanges
       .pipe(takeUntil(this._onDestroy$))
       .subscribe((time) => this.timeChange.emit(time));
   }
 
   ngOnInit(): void {
-    this.time.setValue(this._getTimeFromDueDate());
+    this.timeControl.setValue(this._getTime());
   }
 
   ngOnDestroy(): void {
@@ -58,9 +58,9 @@ export class TimeSelectorComponent implements OnDestroy, OnInit {
     this._onDestroy$.complete();
   }
 
-  closeTimeInput(): void {
-    this.timeInput.closePanel();
-  }
+  // closeTimeInput(): void {
+  //   this.timeInput.closePanel();
+  // }
 
   private _filterTimes(value: string): string[] {
     const filterValue = value.toLowerCase();
@@ -69,8 +69,8 @@ export class TimeSelectorComponent implements OnDestroy, OnInit {
     );
   }
 
-  private _getTimeFromDueDate(): string {
-    if (!this.dueDate) return '';
-    return toMoment(this.dueDate).format('h:mm a');
+  private _getTime(): string {
+    if (!this.timeInput) return '';
+    return toMoment(this.timeInput).format('h:mm a');
   }
 }
