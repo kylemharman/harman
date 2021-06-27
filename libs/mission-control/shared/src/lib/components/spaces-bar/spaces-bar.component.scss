@@ -1,7 +1,7 @@
 .mc-left-sidebar-container {
   height: 100%;
   width: 55px;
-  border-right: solid 1px #cccccc;
+  border-right: solid 1px #e9ebf0;
   background-color: var(--background);
 
   .mc-left-sidebar-user {
@@ -10,7 +10,36 @@
 }
 
 .background-test {
-  background-color: #fafbfc;
+  background-color: var(--background);
+}
+
+a {
+  width: 46px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-icon,
+.notifications-icon,
+.tasks-icon {
+  width: 20px;
+  height: 20px;
+  fill: #bebebe;
+}
+
+.active {
+  border-right: 2px solid #000;
+
+  .home-icon,
+  .notifications-icon,
+  .tasks-icon {
+    fill: #000;
+    &:hover {
+      fill: #000;
+    }
+  }
 }
 
 .logo {
@@ -30,40 +59,5 @@
     width: 26px;
     border-radius: 50%;
     background-color: var(--background);
-  }
-}
-
-a {
-  width: 36px;
-  height: 36px;
-  border-radius: 4px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  &:hover {
-    background-color: #eee;
-  }
-}
-
-.home-icon,
-.notifications-icon,
-.tasks-icon {
-  width: 22px;
-  height: 22px;
-  fill: var(--color);
-}
-
-.active {
-  background-color: rgb(0, 140, 255);
-
-  &:hover {
-    background-color: rgb(0, 140, 255);
-  }
-
-  .home-icon,
-  .notifications-icon,
-  .tasks-icon {
-    fill: #fff;
   }
 }

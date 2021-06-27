@@ -2,7 +2,7 @@
   *ngIf="user$ | async as user"
   fxLayout="row"
   fxLayoutAlign="start stretch"
-  style="height: 100%;"
+  style="height: 100%"
 >
   <!-- sidenav -->
   <div
@@ -20,30 +20,31 @@
       <div fxLayoutAlign="center center" class="logo">
         <div></div>
       </div>
-      <a
-        [routerLink]="['/', user.id, 'home', 'landing']"
-        routerLinkActive="active"
-      >
+      <a [routerLink]="['/', user.id, 'home', 'landing']" tooltip="Dashboard">
         <svg class="home-icon" viewBox="0 0 24 24">
-          <use xlink:href="assets/icons/home-outline.svg#home-outline" />
+          <use xlink:href="assets/icons/home.svg#home" />
         </svg>
+        <div routerLinkActive="active"></div>
       </a>
-      <a [routerLink]="['/', user.id, 'tasks']" routerLinkActive="active">
+      <a
+        [routerLink]="['/', user.id, 'tasks']"
+        routerLinkActive="active"
+        tooltip="Tasks"
+      >
         <svg class="tasks-icon" viewBox="0 0 24 24">
-          <use
-            xlink:href="assets/icons/check-box-outline.svg#check-box-outline"
-          />
+          <use xlink:href="assets/icons/tasks.svg#tasks" />
         </svg>
+        <div routerLinkActive="active"></div>
       </a>
       <a
         [routerLink]="['/', user.id, 'notifications']"
         routerLinkActive="active"
+        tooltip="Notifications"
       >
         <svg class="notifications-icon" viewBox="0 0 24 24">
-          <use
-            xlink:href="assets/icons/notifications-outline.svg#notifications-outline"
-          />
+          <use xlink:href="assets/icons/notifications.svg#notifications" />
         </svg>
+        <div routerLinkActive="active"></div>
       </a>
     </div>
 
@@ -56,7 +57,7 @@
 
   <!-- TODO - dark/light mode need more work -->
   <!-- TODO - remove all inline styles -->
-  <div class="background-test" style="width: 100%; padding: 30px;">
+  <div class="background-test" style="width: 100%; padding: 30px">
     <ng-content></ng-content>
   </div>
 </div>
