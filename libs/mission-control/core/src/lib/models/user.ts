@@ -8,9 +8,4 @@ export interface IUser {
   profileImage?: string;
   firstSignedInAt: ITimestamp;
   lastSignedInAt: ITimestamp;
-  isOnline: boolean;
-}
-
-export enum UserCollection {
-  Tasks = 'tasks',
 }

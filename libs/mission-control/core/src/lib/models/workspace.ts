@@ -1,9 +1,8 @@
-import { AtLeast } from '@harman/utils';
+import { AtLeast, INamePath } from '@harman/utils';
 
-interface INamePath {
-  name: string;
-  path: string;
-  id: string;
+export enum WorkspaceCollection {
+  Users = 'users',
+  Tasks = 'tasks',
 }
 
 export interface IWorkspace {
@@ -15,9 +14,10 @@ export interface IWorkspace {
 
 export class Workspace {
   static init(
-    overrides: AtLeast<IWorkspace, 'name' | 'id' | 'path' | 'creator'>
+    overrides: AtLeast<IWorkspace, 'id' | 'path' | 'creator'>
   ): IWorkspace {
     return {
+      name: '',
       ...overrides,
     };
   }
