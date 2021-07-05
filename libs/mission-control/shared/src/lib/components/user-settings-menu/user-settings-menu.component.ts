@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { AuthFacade } from '@harman/mission-control/auth';
-import { ThemeService } from '@harman/mission-control/shared';
+import { ThemeService } from '@harman/mission-control/shell';
 
 @Component({
   selector: 'mc-user-settings-menu',

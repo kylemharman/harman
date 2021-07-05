@@ -5,7 +5,6 @@ import { NgMaterialModule } from '@harman/ng-material';
 import { NgSharedModule } from '@harman/ng-shared';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-
 import { AuthFormContainerComponent } from './components/auth-form-container/auth-form-container.component';
 import { AuthPageContainerComponent } from './components/auth-page-container/auth-page-container.component';
 import { ForgotPasswordComponent } from './containers/forgot-password/forgot-password.component';

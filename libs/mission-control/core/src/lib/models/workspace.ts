@@ -1,21 +1,19 @@
 import { AtLeast, INamePath } from '@harman/utils';
 
 export enum WorkspaceCollection {
-  Users = 'users',
+  members = 'members',
   Tasks = 'tasks',
+  Config = 'config',
 }
 
 export interface IWorkspace {
   id: string;
-  path: string;
   name: string;
-  creator: INamePath;
+  creator: { name: string; id: string };
 }
 
 export class Workspace {
-  static init(
-    overrides: AtLeast<IWorkspace, 'id' | 'path' | 'creator'>
-  ): IWorkspace {
+  static init(overrides: AtLeast<IWorkspace, 'id' | 'creator'>): IWorkspace {
     return {
       name: '',
       ...overrides,

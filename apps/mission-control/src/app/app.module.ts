@@ -5,6 +5,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
 import { TOOLTIP_CONFIG } from '@harman/mission-control/core';
 import { NgMaterialModule } from '@harman/ng-material';
 import { EffectsModule } from '@ngrx/effects';
@@ -12,9 +13,7 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { TooltipModule, TooltipOptions } from 'ng2-tooltip-directive';
-
 import { environment } from '../environments/environment';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { metaReducers, reducers } from './store/reducers';
 
@@ -24,7 +23,15 @@ import { metaReducers, reducers } from './store/reducers';
     BrowserModule,
     BrowserAnimationsModule,
     NgMaterialModule,
-    AppRoutingModule,
+    RouterModule.forRoot([
+      {
+        path: '',
+        loadChildren: () =>
+          import('@harman/mission-control/shell').then(
+            (m) => m.MissionControlShellModule
+          ),
+      },
+    ]),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireStorageModule,

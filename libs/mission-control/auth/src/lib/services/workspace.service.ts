@@ -21,19 +21,17 @@ export class WorkspaceService {
 
     return Workspace.init({
       id: docRef.ref.id,
-      path: docRef.ref.path,
       creator: {
         name: user.displayName,
         id: user.id,
-        path: user.path,
       },
     });
   }
 
   async saveWorkspace(workspace: IWorkspace): Promise<void> {
-    console.log('saveWorkspace');
-    console.log('workspace saveWorkspace() :>> ', workspace);
-    await this._db.set(workspace.path, workspace);
-    console.log('after saveWorkspace');
+    await this._db.set(
+      `${RootCollection.Workspaces}/${workspace.id}`,
+      workspace
+    );
   }
 }

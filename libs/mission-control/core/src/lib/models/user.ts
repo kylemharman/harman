@@ -8,4 +8,6 @@ export interface IUser {
   profileImage?: string;
   firstSignedInAt: ITimestamp;
   lastSignedInAt: ITimestamp;
+  lastWorkspaceSignIn?: string;
+  workspaces?: string[];
 }

@@ -46,6 +46,12 @@
     },
     "utils": {
       "tags": ["scope:shared"]
+    },
+    "mission-control/workspaces": {
+      "tags": ["scope:mission-control"]
+    },
+    "mission-control/shell": {
+      "tags": ["scope:mission-control"]
     }
   }
 }

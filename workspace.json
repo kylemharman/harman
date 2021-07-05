@@ -292,6 +292,56 @@
           }
         }
       }
+    },
+    "mission-control/workspaces": {
+      "projectType": "library",
+      "root": "libs/mission-control/workspaces",
+      "sourceRoot": "libs/mission-control/workspaces/src",
+      "prefix": "mc",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mission-control/workspaces"],
+          "options": {
+            "jestConfig": "libs/mission-control/workspaces/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/mission-control/workspaces/src/**/*.ts",
+              "libs/mission-control/workspaces/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "mission-control/shell": {
+      "projectType": "library",
+      "root": "libs/mission-control/shell",
+      "sourceRoot": "libs/mission-control/shell/src",
+      "prefix": "mc",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mission-control/shell"],
+          "options": {
+            "jestConfig": "libs/mission-control/shell/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/mission-control/shell/src/**/*.ts",
+              "libs/mission-control/shell/src/**/*.html"
+            ]
+          }
+        }
+      }
     }
   },
   "cli": {

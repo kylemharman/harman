@@ -1,0 +1,7 @@
+<div class="mc-theme-wrapper">
+  <mc-spaces-bar>
+    <div [class]="theme.currentTheme$ | async" class="mc-theme--wrapper">
+      <router-outlet></router-outlet>
+    </div>
+  </mc-spaces-bar>
+</div>

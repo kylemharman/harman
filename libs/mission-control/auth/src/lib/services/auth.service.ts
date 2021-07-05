@@ -75,7 +75,6 @@ export class AuthService {
       profileImage: firebaseUser.photoURL,
       firstSignedInAt: toTimestamp(moment(firebaseUser.metadata.creationTime)),
       lastSignedInAt: toTimestamp(moment(firebaseUser.metadata.lastSignInTime)),
-      isOnline: true,
     };
   }
 }

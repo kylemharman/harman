@@ -31,9 +31,9 @@ export class AuthEffects {
           credentials.payload.username
         );
         return [
-          AuthActions.signUpCompleted(),
-          AuthActions.loginSuccess({ user }),
           AuthActions.saveUser({ user }),
+          AuthActions.loginSuccess({ user }),
+          AuthActions.signUpCompleted(),
           AuthActions.sendVerificationEmail({ user: credentials.user.user }),
         ];
       }),
@@ -47,6 +47,15 @@ export class AuthEffects {
         ofType(AuthActions.saveUser),
         concatMap((payload) => this._authService.saveUser(payload.user)),
         catchError((error) => of(AuthActions.authError({ error })))
+      ),
+    { dispatch: false }
+  );
+
+  createWorkspace$ = createEffect(
+    () =>
+      this._actions$.pipe(
+        ofType(AuthActions.createWorkspace),
+        concatMap(() => this._router.navigateByUrl('create-workspace'))
       ),
     { dispatch: false }
   );
@@ -113,14 +122,18 @@ export class AuthEffects {
         if (credentials.additionalUserInfo.isNewUser) {
           const user = this._authService.createUser(credentials.user);
           return [
-            AuthActions.loginSuccess({ user }),
             AuthActions.saveUser({ user }),
+            // AuthActions.loginSuccess({ user }),
+            AuthActions.createWorkspace(),
           ];
         }
 
-        return this._authService
-          .getUser$(credentials.user.uid)
-          .pipe(map((user) => AuthActions.loginSuccess({ user })));
+        return (
+          this._authService
+            .getUser$(credentials.user.uid)
+            // load user last used workspace.
+            .pipe(map((user) => AuthActions.loginSuccess({ user })))
+        );
       }),
       catchError((error) => of(AuthActions.authError({ error })))
     )

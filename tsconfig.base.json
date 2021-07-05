@@ -27,7 +27,15 @@
       "@harman/mission-control/shared": [
         "libs/mission-control/shared/src/index.ts"
       ],
-      "@harman/mission-control/core": ["libs/mission-control/core/src/index.ts"]
+      "@harman/mission-control/core": [
+        "libs/mission-control/core/src/index.ts"
+      ],
+      "@harman/mission-control/workspaces": [
+        "libs/mission-control/workspaces/src/index.ts"
+      ],
+      "@harman/mission-control/shell": [
+        "libs/mission-control/shell/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"],

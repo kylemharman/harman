@@ -10,7 +10,7 @@ import {
   ITask,
   RootCollection,
   Task,
-  UserCollection,
+  WorkspaceCollection,
 } from '@harman/mission-control/core';
 import { snapshot } from '@harman/utils';
 
@@ -68,9 +68,11 @@ export class TasksService {
   }
 
   getTasksCollection$(): Observable<string> {
+    // this needs re-jigging. 
     return this._auth.firebaseAuthUser$.pipe(
       map(
-        (user) => `${RootCollection.Users}/${user.uid}/${UserCollection.Tasks}`
+        (user) =>
+          `${RootCollection.Workspaces}/${WorkspaceCollection.Tasks}`
       )
     );
   }

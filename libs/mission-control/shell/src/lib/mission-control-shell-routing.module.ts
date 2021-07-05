@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '@harman/mission-control/auth';
-import { AppShellComponent } from '@harman/mission-control/shared';
+import { AppShellComponent } from './components/app-shell/app-shell.component';
 
 const routes: Routes = [
   {
@@ -9,6 +9,14 @@ const routes: Routes = [
     loadChildren: () =>
       import('@harman/mission-control/auth').then(
         (m) => m.MissionControlAuthModule
+      ),
+  },
+  {
+    path: 'create-workspace',
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('@harman/mission-control/workspaces').then(
+        (m) => m.MissionControlWorkspacesModule
       ),
   },
   {
@@ -28,7 +36,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class MissionControlShellRoutingModule {}

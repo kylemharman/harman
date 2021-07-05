@@ -2,7 +2,6 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
 import { NgMaterialModule } from '@harman/ng-material';
 import { NgSharedModule } from '@harman/ng-shared';
 import { EffectsModule } from '@ngrx/effects';
@@ -29,7 +28,6 @@ import * as fromTasks from './store/reducers';
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule,
     MissionControlTasksRoutingModule,
     FormsModule,
     DragDropModule,

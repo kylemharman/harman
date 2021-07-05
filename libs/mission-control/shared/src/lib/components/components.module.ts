@@ -4,8 +4,6 @@ import { RouterModule } from '@angular/router';
 import { NgMaterialModule } from '@harman/ng-material';
 import { NgSharedModule } from '@harman/ng-shared';
 import { TooltipModule } from 'ng2-tooltip-directive';
-import { ThemeService } from '../services/theme.service';
-import { AppShellComponent } from './app-shell/app-shell.component';
 import { SpacesBarComponent } from './spaces-bar/spaces-bar.component';
 import { UserSettingsMenuComponent } from './user-settings-menu/user-settings-menu.component';
 
@@ -17,12 +15,7 @@ import { UserSettingsMenuComponent } from './user-settings-menu/user-settings-me
     RouterModule,
     TooltipModule,
   ],
-  declarations: [
-    SpacesBarComponent,
-    AppShellComponent,
-    UserSettingsMenuComponent,
-  ],
-  exports: [SpacesBarComponent, AppShellComponent, UserSettingsMenuComponent],
-  providers: [ThemeService],
+  declarations: [SpacesBarComponent, UserSettingsMenuComponent],
+  exports: [SpacesBarComponent, UserSettingsMenuComponent],
 })
 export class ComponentsModule {}

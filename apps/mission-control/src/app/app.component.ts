@@ -1,13 +1,8 @@
 import { Component } from '@angular/core';
-import { ThemeService } from '@harman/mission-control/shared';
 
 @Component({
   selector: 'harman-root',
-  template: `
-    <div [class]="theme.currentTheme$ | async" class="mc-theme--wrapper">
-      <router-outlet></router-outlet>
-    </div>
-  `,
+  template: `<router-outlet></router-outlet>`,
   styles: [
     `
       .mc-theme--wrapper {
@@ -19,5 +14,5 @@ import { ThemeService } from '@harman/mission-control/shared';
 export class AppComponent {
   title = 'mission-control';
 
-  constructor(public theme: ThemeService) {}
+  constructor() {}
 }
