@@ -52,6 +52,9 @@
     },
     "mission-control/shell": {
       "tags": ["scope:mission-control"]
+    },
+    "mission-control/dashboard": {
+      "tags": ["scope:mission-control"]
     }
   }
 }

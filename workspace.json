@@ -342,6 +342,31 @@
           }
         }
       }
+    },
+    "mission-control/dashboard": {
+      "projectType": "library",
+      "root": "libs/mission-control/dashboard",
+      "sourceRoot": "libs/mission-control/dashboard/src",
+      "prefix": "mc",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mission-control/dashboard"],
+          "options": {
+            "jestConfig": "libs/mission-control/dashboard/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/mission-control/dashboard/src/**/*.ts",
+              "libs/mission-control/dashboard/src/**/*.html"
+            ]
+          }
+        }
+      }
     }
   },
   "cli": {

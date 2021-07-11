@@ -35,6 +35,9 @@
       ],
       "@harman/mission-control/shell": [
         "libs/mission-control/shell/src/index.ts"
+      ],
+      "@harman/mission-control/dashboard": [
+        "libs/mission-control/dashboard/src/index.ts"
       ]
     }
   },

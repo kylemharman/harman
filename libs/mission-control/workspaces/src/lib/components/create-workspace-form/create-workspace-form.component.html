@@ -1,33 +1,23 @@
-<div style="margin: 100px">
-  <div style="margin-bottom: 100px">
-    <h1>Create a Workspace</h1>
-    <form
-      fxLayout="column"
-      fxLayoutGap="16px"
-      [formGroup]="form"
-      (ngSubmit)="onSubmit()"
-    >
-      <!-- name -->
-      <mat-form-field appearance="outline">
-        <mat-label>Workspace Name</mat-label>
-        <input matInput formControlName="name" autocomplete="off" />
-        <mat-error *ngIf="!name.value.length && name.touched">
-          <mat-icon>warning</mat-icon> This field is required!
-        </mat-error>
-      </mat-form-field>
+<form
+  fxLayout="column"
+  fxLayoutGap="16px"
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+>
+  <!-- name -->
+  <mat-form-field appearance="outline">
+    <mat-label>Workspace Name</mat-label>
+    <input matInput formControlName="name" autocomplete="off" />
+    <mat-error *ngIf="!name.value.length && name.touched">
+      <mat-icon>warning</mat-icon> This field is required!
+    </mat-error>
+  </mat-form-field>
 
-      <ha-main-button
-        [primary]="true"
-        [fullWidth]="true"
-        type="submit"
-        label="Create Workspace"
-        size="large"
-      ></ha-main-button>
-    </form>
-  </div>
-  <h1>Invite Your Team</h1>
-  <p>add team member</p>
-  <p>add team member</p>
-  <p>add team member</p>
-  <p>add team member</p>
-</div>
+  <ha-main-button
+    [primary]="true"
+    [fullWidth]="true"
+    type="submit"
+    label="Create Workspace"
+    size="large"
+  ></ha-main-button>
+</form>

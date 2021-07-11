@@ -25,6 +25,13 @@ const routes: Routes = [
     component: AppShellComponent,
     children: [
       {
+        path: 'dashboard',
+        loadChildren: () =>
+          import('@harman/mission-control/dashboard').then(
+            (m) => m.MissionControlDashboardModule
+          ),
+      },
+      {
         path: 'tasks',
         loadChildren: () =>
           import('@harman/mission-control/tasks').then(

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreateWorkspaceComponent } from './create-workspace.component';
+import { DashboardPageComponent } from './dashboard-page.component';
 
-describe('CreateWorkspaceComponent', () => {
-  let component: CreateWorkspaceComponent;
-  let fixture: ComponentFixture<CreateWorkspaceComponent>;
+describe('DashboardPageComponent', () => {
+  let component: DashboardPageComponent;
+  let fixture: ComponentFixture<DashboardPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CreateWorkspaceComponent ]
+      declarations: [ DashboardPageComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CreateWorkspaceComponent);
+    fixture = TestBed.createComponent(DashboardPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -11,5 +11,6 @@ module.exports = {
     '<rootDir>/libs/mission-control/core',
     '<rootDir>/libs/mission-control/workspaces',
     '<rootDir>/libs/mission-control/shell',
+    '<rootDir>/libs/mission-control/dashboard',
   ],
 };

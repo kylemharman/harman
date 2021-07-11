@@ -1,13 +1,16 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+} from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { AuthFacade } from '@harman/mission-control/auth';
-import { snapshot } from '@harman/utils';
-import { WorkspaceService } from 'libs/mission-control/auth/src/lib/services/workspace.service';
 
 @Component({
   selector: 'mc-create-workspace-form',
@@ -17,12 +20,9 @@ import { WorkspaceService } from 'libs/mission-control/auth/src/lib/services/wor
 })
 export class CreateWorkspaceFormComponent implements OnInit {
   form: FormGroup;
+  @Output() workspaceName = new EventEmitter<string>();
 
-  constructor(
-    private _fb: FormBuilder,
-    private _authStore: AuthFacade,
-    private _workspaceService: WorkspaceService
-  ) {}
+  constructor(private _fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.form = this._fb.group({
@@ -36,16 +36,7 @@ export class CreateWorkspaceFormComponent implements OnInit {
 
   async onSubmit(): Promise<void> {
     if (this.form.valid) {
-      const user = await snapshot(this._authStore.user$);
-      const workspace = this._workspaceService.createWorkspace(
-        this.name.value,
-        user
-      );
-      this._authStore.setupWorkspace(workspace, user);
-      this._authStore.updateUserCurrentWorkspace({
-        ...user,
-        currentWorkspaceId: workspace.id,
-      });
+      this.workspaceName.emit(this.name.value);
     }
   }
 }

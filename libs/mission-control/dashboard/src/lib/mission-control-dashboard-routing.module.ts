@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CreateWorkspacePageComponent } from './containers/create-workspace-page/create-workspace-page.component';
+import { DashboardPageComponent } from './containers/dashboard-page/dashboard-page.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: CreateWorkspacePageComponent,
+    component: DashboardPageComponent,
   },
 ];
 
@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class MissionControlWorkspaceRoutingModule {}
+export class MissionControlDashboardRoutingModule {}
