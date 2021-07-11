@@ -11,8 +11,8 @@ import {
   take,
   tap,
 } from 'rxjs/operators';
-
 import { AuthService } from '../../services/auth.service';
+import { WorkspaceService } from '../../services/workspace.service';
 import { AuthActions } from '../actions';
 
 @Injectable()
@@ -45,18 +45,69 @@ export class AuthEffects {
     () =>
       this._actions$.pipe(
         ofType(AuthActions.saveUser),
-        concatMap((payload) => this._authService.saveUser(payload.user)),
+        concatMap(({ user }) => this._authService.saveUser(user)),
         catchError((error) => of(AuthActions.authError({ error })))
       ),
     { dispatch: false }
   );
 
-  createWorkspace$ = createEffect(
+  updateUserCurrentWorkspace$ = createEffect(
     () =>
       this._actions$.pipe(
-        ofType(AuthActions.createWorkspace),
+        ofType(AuthActions.updateUserCurrentWorkspace),
+        concatMap(({ user }) => this._authService.updateUser(user))
+      ),
+    { dispatch: false }
+  );
+
+  createWorkspaceNavigate$ = createEffect(
+    () =>
+      this._actions$.pipe(
+        ofType(AuthActions.createWorkspaceNavigate),
         concatMap(() => this._router.navigateByUrl('create-workspace'))
       ),
+    { dispatch: false }
+  );
+
+  setupWorkspace$ = createEffect(() =>
+    this._actions$.pipe(
+      ofType(AuthActions.setupWorkspace),
+      concatMap(({ workspace, user }) => [
+        AuthActions.saveWorkspace({ workspace, user }),
+        AuthActions.saveWorkspaceCreator({ workspace, user }),
+      ])
+    )
+  );
+
+  saveWorkspace$ = createEffect(
+    () =>
+      this._actions$.pipe(
+        ofType(AuthActions.saveWorkspace),
+        concatMap(({ workspace }) =>
+          this._workspaceService.saveWorkspace(workspace)
+        )
+      ),
+    { dispatch: false }
+  );
+
+  saveWorkspaceCreator$ = createEffect(
+    () =>
+      this._actions$.pipe(
+        ofType(AuthActions.saveWorkspaceCreator),
+        concatMap(({ workspace, user }) => {
+          const workspaceCreator = this._workspaceService.createWorkspaceMember(
+            workspace.name,
+            user,
+            true,
+            true
+          );
+          return this._workspaceService.saveWorkspaceMember(
+            workspace.id,
+            workspaceCreator
+          );
+        })
+      ),
+    // redirect user to new workspace
     { dispatch: false }
   );
 
@@ -123,8 +174,8 @@ export class AuthEffects {
           const user = this._authService.createUser(credentials.user);
           return [
             AuthActions.saveUser({ user }),
+            AuthActions.createWorkspaceNavigate(),
             // AuthActions.loginSuccess({ user }),
-            AuthActions.createWorkspace(),
           ];
         }
 
@@ -203,6 +254,7 @@ export class AuthEffects {
   constructor(
     private _actions$: Actions,
     private _authService: AuthService,
+    private _workspaceService: WorkspaceService,
     private _router: Router,
     private _snackBar: MatSnackBar
   ) {}

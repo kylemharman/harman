@@ -67,11 +67,28 @@ export const saveUser = createAction(
   props<{ user: IUser }>()
 );
 
-export const createWorkspace = createAction('[Auth] Create Workspace');
+export const updateUserCurrentWorkspace = createAction(
+  '[Auth] Update User Current Workspace',
+  props<{ user: IUser }>()
+);
+
+export const createWorkspaceNavigate = createAction(
+  '[Auth] Create Workspace Navigate'
+);
+
+export const setupWorkspace = createAction(
+  '[Auth] Create/Save Workspace and Create/Save Creator',
+  props<{ workspace: IWorkspace; user: IUser }>()
+);
 
 export const saveWorkspace = createAction(
   '[Auth] Save Workspace',
-  props<{ user: IUser; workspace: IWorkspace }>()
+  props<{ workspace: IWorkspace; user: IUser }>()
+);
+
+export const saveWorkspaceCreator = createAction(
+  '[Auth] Save Workspace Creator As Member',
+  props<{ workspace: IWorkspace; user: IUser }>()
 );
 
 export const getUser = createAction('[Auth] Get User');

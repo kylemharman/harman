@@ -13,8 +13,8 @@ import { isString } from 'lodash';
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 
-type CollectionPredicate<T> = string | AngularFirestoreCollection<T>;
-type DocPredicate<T> = string | AngularFirestoreDocument<T>;
+export type CollectionPredicate<T> = string | AngularFirestoreCollection<T>;
+export type DocPredicate<T> = string | AngularFirestoreDocument<T>;
 
 @Injectable({ providedIn: 'root' })
 export class FirestoreService {
@@ -109,7 +109,10 @@ export class FirestoreService {
     return this.doc(ref).delete();
   }
 
-  async add<T>(ref: CollectionPredicate<T>, data: T): Promise<DocPredicate<T>> {
+  async add<T>(
+    ref: CollectionPredicate<T>,
+    data: T
+  ): Promise<AngularFirestoreDocument<T>> {
     const timestamp = this.timestamp;
     const doc = this.col(ref).doc<T>(this._afs.createId());
     await doc.set({

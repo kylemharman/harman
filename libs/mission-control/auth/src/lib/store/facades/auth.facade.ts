@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
+import { IUser, IWorkspace } from '@harman/mission-control/core';
 import { select, Store } from '@ngrx/store';
 import firebase from 'firebase';
+import { BehaviorSubject } from 'rxjs';
+
 import { AuthActions } from '../actions';
 import { AuthState } from '../reducers';
 import {
@@ -37,15 +40,23 @@ export class AuthFacade {
     );
   }
 
-  sendVerificationEmailMail(user: firebase.User) {
+  sendVerificationEmailMail(user: firebase.User): void {
     this._store.dispatch(AuthActions.sendVerificationEmail({ user }));
   }
 
-  forgotPassword(email: string) {
+  forgotPassword(email: string): void {
     this._store.dispatch(AuthActions.forgotPasswordRequested({ email }));
   }
 
   logout(): void {
     this._store.dispatch(AuthActions.logoutRequested());
+  }
+
+  setupWorkspace(workspace: IWorkspace, user: IUser): void {
+    this._store.dispatch(AuthActions.setupWorkspace({ workspace, user }));
+  }
+
+  updateUserCurrentWorkspace(user: IUser): void {
+    this._store.dispatch(AuthActions.updateUserCurrentWorkspace({ user }));
   }
 }

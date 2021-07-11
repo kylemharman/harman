@@ -1,26 +1,26 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import firebase from 'firebase';
-import { Observable } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
-import { TaskFacade } from '../store/facades/task.facade';
-import { AuthService } from '@harman/mission-control/auth';
-import { FirestoreService } from '@harman/ng-shared';
+import { AuthFacade } from '@harman/mission-control/auth';
 import {
   ITask,
   RootCollection,
   Task,
   WorkspaceCollection,
 } from '@harman/mission-control/core';
+import { FirestoreService } from '@harman/ng-shared';
 import { snapshot } from '@harman/utils';
+import firebase from 'firebase';
+import { Observable } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
+import { TaskFacade } from '../store/facades/task.facade';
 
 @Injectable()
 export class TasksService {
   constructor(
     private _db: FirestoreService,
     private _taskStore: TaskFacade,
-    private _auth: AuthService,
-    private _snack: MatSnackBar
+    private _snack: MatSnackBar,
+    private _authStore: AuthFacade
   ) {}
 
   async createTask(name: string): Promise<ITask> {
@@ -30,8 +30,8 @@ export class TasksService {
     }
     const id = this._db.generateId();
     const order = await this._getOrderNumber();
-    const taskCollectionRef = await snapshot(this.getTasksCollection$());
-    const docRef = this._db.col<ITask>(taskCollectionRef).doc<ITask>(id);
+    const tasksCollection = await snapshot(this.tasksCollection$());
+    const docRef = this._db.col<ITask>(tasksCollection).doc<ITask>(id);
     return Task.init({
       name,
       order,
@@ -45,34 +45,34 @@ export class TasksService {
   }
 
   async sortTasks(tasks: Partial<ITask>[]) {
-    const tasksCollection = await snapshot(this.getTasksCollection$());
     const db = firebase.firestore();
     const batch = db.batch();
-
+    const tasksCollection = await snapshot(this.tasksCollection$());
     const refs = tasks.map((t) => db.collection(tasksCollection).doc(t.id));
     refs.forEach((ref, i) => batch.update(ref, { order: i }));
     batch.commit();
   }
 
   async updateTask(taskID: string, data: Partial<ITask>): Promise<void> {
-    const taskRef = await snapshot(this.getTasksCollection$());
-    await this._db.update(`${taskRef}/${taskID}`, data);
+    await this._db.update(
+      `${RootCollection.Workspaces}/${WorkspaceCollection.Tasks}/${taskID}`,
+      data
+    );
   }
 
   getAllTasks$(): Observable<ITask[]> {
-    return this.getTasksCollection$().pipe(
+    return this.tasksCollection$().pipe(
       switchMap((ref) =>
         this._db.col$<ITask>(ref, (doc) => doc.orderBy('order'))
       )
     );
   }
 
-  getTasksCollection$(): Observable<string> {
-    // this needs re-jigging. 
-    return this._auth.firebaseAuthUser$.pipe(
+  tasksCollection$(): Observable<string> {
+    return this._authStore.user$.pipe(
       map(
         (user) =>
-          `${RootCollection.Workspaces}/${WorkspaceCollection.Tasks}`
+          `${RootCollection.Workspaces}/${user.currentWorkspaceId}/${WorkspaceCollection.Tasks}`
       )
     );
   }

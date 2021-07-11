@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { IUser, RootCollection } from '@harman/mission-control/core';
+import { FirestoreService } from '@harman/ng-shared';
+import { toTimestamp } from '@harman/utils';
 import firebase from 'firebase';
 import * as moment from 'moment';
 import { from, Observable, Subject } from 'rxjs';
-import { toTimestamp } from '@harman/utils';
-import { FirestoreService } from '@harman/ng-shared';
-import { IUser, RootCollection } from '@harman/mission-control/core';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -66,9 +66,17 @@ export class AuthService {
     await this._db.set<IUser>(`${RootCollection.Users}/${user.id}`, user);
   }
 
+  async updateUser(user: Partial<IUser>): Promise<void> {
+    await this._db.update<Partial<IUser>>(
+      `${RootCollection.Users}/${user.id}`,
+      user
+    );
+  }
+
   createUser(firebaseUser: firebase.User, name?: string): IUser {
     return {
       id: firebaseUser.uid,
+      path: `${RootCollection.Users}/${firebaseUser.uid}`,
       displayName: name ?? firebaseUser.displayName,
       email: firebaseUser.email,
       emailVerified: firebaseUser.emailVerified,
