@@ -5,7 +5,7 @@ import { FirestoreService } from '@harman/ng-shared';
 import { toTimestamp } from '@harman/utils';
 import firebase from 'firebase';
 import * as moment from 'moment';
-import { from, Observable, Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -17,33 +17,36 @@ export class AuthService {
     private _afAuth: AngularFireAuth
   ) {}
 
-  signUp$(
+  async signUp(
     email: string,
     password: string
-  ): Observable<firebase.auth.UserCredential> {
-    return from(this._afAuth.createUserWithEmailAndPassword(email, password));
+  ): Promise<firebase.auth.UserCredential> {
+    return this._afAuth.createUserWithEmailAndPassword(email, password);
   }
 
-  login$(
+  async login(
     email: string,
     password: string
-  ): Observable<firebase.auth.UserCredential> {
-    return from(this._afAuth.signInWithEmailAndPassword(email, password));
+  ): Promise<firebase.auth.UserCredential> {
+    return this._afAuth.signInWithEmailAndPassword(email, password);
   }
 
-  logout(): Promise<void> {
-    return this._afAuth.signOut();
+  async logout(): Promise<void> {
+    console.log('logout');
+    await this._afAuth.signOut();
   }
 
-  authProviderLogin$(
+  async authProviderLogin(
     authProvider: 'google' | 'facebook'
-  ): Observable<firebase.auth.UserCredential> {
+  ): Promise<firebase.auth.UserCredential> {
     const provider =
       authProvider === 'google'
         ? new firebase.auth.GoogleAuthProvider()
         : new firebase.auth.FacebookAuthProvider();
 
-    return from(this._afAuth.signInWithPopup(provider));
+    console.log('login');
+
+    return this._afAuth.signInWithPopup(provider);
   }
 
   getUser$(userUid: string): Observable<IUser | undefined> {
@@ -54,12 +57,12 @@ export class AuthService {
     return this._afAuth.authState;
   }
 
-  sendVerificationEmail$(user: firebase.User): Observable<unknown> {
-    return from(user.sendEmailVerification());
+  async sendVerificationEmail(user: firebase.User): Promise<void> {
+    await user.sendEmailVerification();
   }
 
-  forgotPassword$(email: string): Observable<void> {
-    return from(this._afAuth.sendPasswordResetEmail(email));
+  async forgotPassword(email: string): Promise<void> {
+    await this._afAuth.sendPasswordResetEmail(email);
   }
 
   async saveUser(user: IUser): Promise<void> {

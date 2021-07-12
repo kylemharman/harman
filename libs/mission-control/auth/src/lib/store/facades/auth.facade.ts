@@ -22,10 +22,6 @@ export class AuthFacade {
 
   constructor(private _store: Store<AuthState>) {}
 
-  getUser(): void {
-    this._store.dispatch(AuthActions.getUser());
-  }
-
   login(email: string, password: string): void {
     this._store.dispatch(AuthActions.loginRequested({ email, password }));
   }
