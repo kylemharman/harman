@@ -68,17 +68,18 @@ export class AuthEffects {
       ),
     { dispatch: false }
   );
-
+  // TODO create a workspace store/effects and move this
   setupWorkspace$ = createEffect(() =>
     this._actions$.pipe(
       ofType(AuthActions.setupWorkspace),
       concatMap(({ workspace, user }) => [
         AuthActions.saveWorkspace({ workspace, user }),
         AuthActions.saveWorkspaceCreator({ workspace, user }),
+        AuthActions.loginSuccess({ user }),
       ])
     )
   );
-
+  // TODO create a workspace store/effects and move this
   saveWorkspace$ = createEffect(
     () =>
       this._actions$.pipe(
@@ -89,7 +90,7 @@ export class AuthEffects {
       ),
     { dispatch: false }
   );
-
+  // TODO create a workspace store/effects and move this
   saveWorkspaceCreator$ = createEffect(
     () =>
       this._actions$.pipe(
@@ -107,16 +108,13 @@ export class AuthEffects {
           );
         })
       ),
-    // redirect user to new workspace
     { dispatch: false }
   );
 
   sendVerificationEmail$ = createEffect(() =>
     this._actions$.pipe(
       ofType(AuthActions.sendVerificationEmail),
-      concatMap((payload) =>
-        this._authService.sendVerificationEmail$(payload.user)
-      ),
+      concatMap(({ user }) => this._authService.sendVerificationEmail$(user)),
       map(() => AuthActions.sendVerificationEmailSuccess()),
       catchError((error) => of(AuthActions.authError({ error })))
     )
@@ -134,8 +132,8 @@ export class AuthEffects {
   loginRequested$ = createEffect(() =>
     this._actions$.pipe(
       ofType(AuthActions.loginRequested),
-      concatMap((payload) =>
-        this._authService.login$(payload.email, payload.password)
+      concatMap(({ email, password }) =>
+        this._authService.login$(email, password)
       ),
       concatMap((user) => this._authService.getUser$(user.user.uid)),
       map((user) => AuthActions.loginSuccess({ user })),
@@ -147,8 +145,8 @@ export class AuthEffects {
     () =>
       this._actions$.pipe(
         ofType(AuthActions.loginSuccess),
-        concatMap((payload) =>
-          this._router.navigate([payload.user.id, 'tasks'])
+        concatMap(({ user }) =>
+          this._router.navigate([user.currentWorkspaceId, 'dashboard'])
         )
       ),
     { dispatch: false }
@@ -166,8 +164,8 @@ export class AuthEffects {
   AuthProviderLogin$ = createEffect(() =>
     this._actions$.pipe(
       ofType(AuthActions.authProviderLogin),
-      concatMap((payload) =>
-        this._authService.authProviderLogin$(payload.authProvider)
+      concatMap(({ authProvider }) =>
+        this._authService.authProviderLogin$(authProvider)
       ),
       switchMap((credentials) => {
         if (credentials.additionalUserInfo.isNewUser) {
@@ -175,7 +173,6 @@ export class AuthEffects {
           return [
             AuthActions.saveUser({ user }),
             AuthActions.createWorkspaceNavigate(),
-            // AuthActions.loginSuccess({ user }),
           ];
         }
 
@@ -193,7 +190,7 @@ export class AuthEffects {
   forgotPasswordRequested$ = createEffect(() =>
     this._actions$.pipe(
       ofType(AuthActions.forgotPasswordRequested),
-      concatMap((payload) => this._authService.forgotPassword$(payload.email)),
+      concatMap(({ email }) => this._authService.forgotPassword$(email)),
       map(() => AuthActions.forgotPasswordComplete()),
       catchError((error) => of(AuthActions.authError({ error })))
     )

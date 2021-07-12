@@ -20,23 +20,25 @@
       <div fxLayoutAlign="center center" class="logo">
         <div></div>
       </div>
-      <a [routerLink]="['/', user.id, 'home', 'landing']" tooltip="Dashboard">
+      <a
+        [routerLink]="['/', user.currentWorkspaceId, 'dashboard']"
+        routerLinkActive="active"
+        tooltip="Dashboard"
+      >
         <svg class="home-icon" viewBox="0 0 24 24">
           <use xlink:href="assets/icons/home.svg#home" />
         </svg>
-        <div routerLinkActive="active"></div>
       </a>
       <a
-        [routerLink]="['/', user.id, 'tasks']"
+        [routerLink]="['/', user.currentWorkspaceId, 'tasks']"
         routerLinkActive="active"
         tooltip="Tasks"
       >
         <svg class="tasks-icon" viewBox="0 0 24 24">
           <use xlink:href="assets/icons/tasks.svg#tasks" />
         </svg>
-        <div routerLinkActive="active"></div>
       </a>
-      <a
+      <!-- <a
         [routerLink]="['/', user.id, 'notifications']"
         routerLinkActive="active"
         tooltip="Notifications"
@@ -45,7 +47,7 @@
           <use xlink:href="assets/icons/notifications.svg#notifications" />
         </svg>
         <div routerLinkActive="active"></div>
-      </a>
+      </a> -->
     </div>
 
     <mat-divider></mat-divider>

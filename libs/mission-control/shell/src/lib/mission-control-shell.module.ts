@@ -1,11 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { MissionControlSharedModule } from '@harman/mission-control/shared';
 import { ComponentsModule } from './components/components.module';
 import { ThemeService } from './services/theme.service';
 import { MissionControlShellRoutingModule } from './mission-control-shell-routing.module';
+import { AppShellComponent } from './containers/app-shell/app-shell.component';
 
 @NgModule({
-  imports: [CommonModule, ComponentsModule, MissionControlShellRoutingModule],
+  declarations: [AppShellComponent],
+  imports: [
+    CommonModule,
+    ComponentsModule,
+    MissionControlShellRoutingModule,
+    MissionControlSharedModule,
+    RouterModule,
+  ],
   exports: [ComponentsModule],
   providers: [ThemeService],
 })

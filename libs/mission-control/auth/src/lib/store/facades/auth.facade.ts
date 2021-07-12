@@ -51,7 +51,7 @@ export class AuthFacade {
   logout(): void {
     this._store.dispatch(AuthActions.logoutRequested());
   }
-
+  // TODO create a workspace facade and move this
   setupWorkspace(workspace: IWorkspace, user: IUser): void {
     this._store.dispatch(AuthActions.setupWorkspace({ workspace, user }));
   }

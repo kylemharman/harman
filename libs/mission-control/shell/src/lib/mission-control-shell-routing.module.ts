@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from '@harman/mission-control/auth';
-import { AppShellComponent } from './components/app-shell/app-shell.component';
+import {
+  AuthGuard,
+  IsWorkspaceMemberGuard,
+} from '@harman/mission-control/auth';
+import { AppShellComponent } from './containers/app-shell/app-shell.component';
 
 const routes: Routes = [
   {
@@ -21,7 +24,7 @@ const routes: Routes = [
   },
   {
     path: ':id',
-    canActivate: [AuthGuard],
+    canActivate: [IsWorkspaceMemberGuard],
     component: AppShellComponent,
     children: [
       {
