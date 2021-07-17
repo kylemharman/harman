@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { AuthFacade } from '../store/facades/auth.facade';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
@@ -7,22 +6,26 @@ import {
   RouterStateSnapshot,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map, take, tap } from 'rxjs/operators';
+import { map, switchMap, take, tap } from 'rxjs/operators';
+import { AuthService } from '../services/auth.service';
 
 @Injectable({ providedIn: 'root' })
 export class IsWorkspaceMemberGuard implements CanActivate {
-  constructor(private _auth: AuthFacade, private router: Router) {}
+  constructor(private _auth: AuthService, private router: Router) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
     _state: RouterStateSnapshot
   ): Observable<boolean> {
-    return this._auth.user$.pipe(
+    return this._auth.getAuthState$().pipe(
       take(1),
-      map((user) => user.currentWorkspaceId === route.params.id),
-      tap((isWorkspaceMember) => {
-        if (!isWorkspaceMember) {
-          console.log('user does not have access to this workspace!');
+      switchMap((user) => this._auth.getUser$(user.uid)),
+      map((user) => {
+        return user.currentWorkspaceId === route.params.id;
+      }),
+      tap((isWorkspaceUser) => {
+        if (!isWorkspaceUser) {
+          console.log('access denied');
           this.router.navigate(['/login']);
         }
       })

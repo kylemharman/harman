@@ -52,7 +52,7 @@ export class AuthFacade {
     this._store.dispatch(AuthActions.setupWorkspace({ workspace, user }));
   }
 
-  updateUserCurrentWorkspace(user: IUser): void {
-    this._store.dispatch(AuthActions.updateUserCurrentWorkspace({ user }));
+  updateUser(user: IUser): void {
+    this._store.dispatch(AuthActions.updateUser({ user }));
   }
 }

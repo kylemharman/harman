@@ -33,8 +33,9 @@ export class AuthEffects {
           credentials.payload.username
         );
         return [
+          AuthActions.setUser({ user }),
           AuthActions.saveUser({ user }),
-          AuthActions.loginSuccess({ user }),
+          AuthActions.createWorkspaceNavigate(),
           AuthActions.signUpCompleted(),
           AuthActions.sendVerificationEmail({ user: credentials.user.user }),
         ];
@@ -47,16 +48,15 @@ export class AuthEffects {
     () =>
       this._actions$.pipe(
         ofType(AuthActions.saveUser),
-        concatMap(({ user }) => this._authService.saveUser(user)),
-        catchError((error) => of(AuthActions.authError({ error })))
+        concatMap(({ user }) => this._authService.saveUser(user))
       ),
     { dispatch: false }
   );
 
-  updateUserCurrentWorkspace$ = createEffect(
+  updateUser$ = createEffect(
     () =>
       this._actions$.pipe(
-        ofType(AuthActions.updateUserCurrentWorkspace),
+        ofType(AuthActions.updateUser),
         concatMap(({ user }) => this._authService.updateUser(user))
       ),
     { dispatch: false }
@@ -138,7 +138,10 @@ export class AuthEffects {
         this._authService.login(email, password)
       ),
       concatMap((user) => this._authService.getUser$(user.user.uid)),
-      map((user) => AuthActions.loginSuccess({ user })),
+      concatMap((user) => [
+        AuthActions.setUser({ user }),
+        AuthActions.loginSuccess({ user }),
+      ]),
       catchError((error) => of(AuthActions.authError({ error })))
     )
   );
@@ -173,13 +176,17 @@ export class AuthEffects {
         if (credentials.additionalUserInfo.isNewUser) {
           const user = this._authService.createUser(credentials.user);
           return [
+            AuthActions.setUser({ user }),
             AuthActions.saveUser({ user }),
             AuthActions.createWorkspaceNavigate(),
           ];
         }
         return this._authService.getUser$(credentials.user.uid).pipe(
           take(1),
-          map((user) => AuthActions.loginSuccess({ user }))
+          concatMap((user) => [
+            AuthActions.setUser({ user }),
+            AuthActions.loginSuccess({ user }),
+          ])
         );
       }),
       catchError((error) => of(AuthActions.authError({ error })))
@@ -222,6 +229,34 @@ export class AuthEffects {
         concatMap(() => this._router.navigateByUrl('login'))
       ),
     { dispatch: false }
+  );
+
+  getUser$ = createEffect(() =>
+    this._actions$.pipe(
+      ofType(AuthActions.getUser),
+      concatMap(() => this._authService.getAuthState$()),
+      take(1),
+      switchMap((authUser) => {
+        if (authUser) {
+          return this._authService
+            .getUser$(authUser.uid)
+            .pipe(
+              concatMap((user) => [
+                AuthActions.setUser({ user }),
+                AuthActions.loginSuccess({ user }),
+              ])
+            );
+        }
+        return [AuthActions.loginFailed()];
+      }),
+      catchError((error) => of(AuthActions.authError({ error })))
+    )
+  );
+
+  init$ = createEffect(() =>
+    defer(() => {
+      return of(AuthActions.getUser());
+    })
   );
 
   constructor(

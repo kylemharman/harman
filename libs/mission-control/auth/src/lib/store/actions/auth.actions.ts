@@ -23,16 +23,6 @@ export const sendVerificationEmailSuccess = createAction(
   '[Auth] Auth Send Verification Email Success'
 );
 
-export const updateProfile = createAction(
-  '[Auth] Update Profile',
-  props<{ displayName: string; profileImage: string }>()
-);
-
-export const updateProfileSuccess = createAction(
-  '[Auth] Update Profile Success',
-  props<{ user: IUser }>()
-);
-
 export const loginRequested = createAction(
   '[Auth] Login Requested',
   props<{ email: string; password: string }>()
@@ -63,12 +53,17 @@ export const logoutRequested = createAction('[Auth] Logout Requested');
 export const logoutCompleted = createAction('[Auth] Logout Completed');
 
 export const saveUser = createAction(
-  '[Auth] Save User',
+  '[Auth] Save User To Firebase',
   props<{ user: IUser }>()
 );
 
-export const updateUserCurrentWorkspace = createAction(
-  '[Auth] Update User Current Workspace',
+export const setUser = createAction(
+  '[Auth] Set User In Store',
+  props<{ user: IUser }>()
+);
+
+export const updateUser = createAction(
+  '[Auth] Update User',
   props<{ user: IUser }>()
 );
 

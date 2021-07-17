@@ -12,6 +12,7 @@ export interface IWorkspace {
 
 export interface IMember {
   id: string;
+  path: string;
   user: string;
   email: string;
   displayName: string;

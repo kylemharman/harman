@@ -17,11 +17,12 @@ export class CreateWorkspacePageComponent {
 
   async createWorkspace(name: string): Promise<void> {
     const user = await snapshot(this._authStore.user$);
-    const workspace = this._workspaceService.createWorkspace(name, user);
-    this._authStore.setupWorkspace(workspace, user);
-    this._authStore.updateUserCurrentWorkspace({
+    const workspace = this._workspaceService.createWorkspace(name, user.id);
+    const updatedUser = {
       ...user,
       currentWorkspaceId: workspace.id,
-    });
+    };
+    this._authStore.updateUser(updatedUser);
+    this._authStore.setupWorkspace(workspace, updatedUser);
   }
 }

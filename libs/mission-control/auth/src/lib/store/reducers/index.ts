@@ -1,6 +1,5 @@
 import { IUser } from '@harman/mission-control/core';
 import { createReducer, on } from '@ngrx/store';
-
 import { AuthActions } from '../actions';
 
 export const authFeatureKey = 'auth';
@@ -20,19 +19,15 @@ export const initialAuthState: AuthState = {
 
 export const authReducer = createReducer(
   initialAuthState,
-  on(AuthActions.loginSuccess, (_state, action) => ({
-    user: action.user,
+  on(AuthActions.setUser, (_state, { user }) => ({
+    user,
     isLoggedIn: true,
     isLoading: false,
     error: null,
   })),
-  on(AuthActions.updateUserCurrentWorkspace, (state, action) => ({
+  on(AuthActions.updateUser, (state, { user }) => ({
     ...state,
-    user: action.user,
-  })),
-  on(AuthActions.updateProfileSuccess, (state, action) => ({
-    ...state,
-    user: action.user,
+    user,
   })),
   on(AuthActions.loginFailed, (state, _action) => ({
     ...state,
@@ -40,8 +35,8 @@ export const authReducer = createReducer(
     isLoading: false,
     isLoggedIn: false,
   })),
-  on(AuthActions.authError, (state, action) => ({
+  on(AuthActions.authError, (state, { error }) => ({
     ...state,
-    error: action.error,
+    error,
   }))
 );

@@ -75,13 +75,13 @@ export class FirestoreService {
       );
   }
 
-  /// **************
-  /// Write Data
-  /// **************
-
   get timestamp() {
     return firebase.firestore.FieldValue.serverTimestamp();
   }
+
+  /// **************
+  /// Write Data
+  /// **************
 
   set<T>(ref: DocPredicate<T>, data: T): Promise<void> {
     const timestamp = this.timestamp;

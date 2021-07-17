@@ -1,4 +1,5 @@
-import { AtLeast, ITimestamp } from '@harman/utils';
+import { AtLeast, INamePath, ITimestamp } from '@harman/utils';
+import { IMember } from './workspace';
 
 export interface ITask {
   id: string;
@@ -10,8 +11,8 @@ export interface ITask {
   priority: TaskPriority;
   tags: ITag[];
   dueDate?: ITimestamp;
-  // creator: INameDoc<IUser>;
-  // AssignedTo: INameDoc<IUser>[];
+  createdBy: Pick<IMember, 'displayName' | 'profileImage' | 'path'>;
+  AssignedTo?: Pick<IMember, 'displayName' | 'profileImage' | 'path'>;
   // timeTracking: TimeStamp;
   // watchers: INameDoc<IUser>[];
 }
@@ -42,7 +43,7 @@ export interface ITag {
 }
 export class Task {
   static init(
-    overrides: AtLeast<ITask, 'name' | 'order' | 'id' | 'path'>
+    overrides: AtLeast<ITask, 'name' | 'order' | 'id' | 'path' | 'createdBy'>
   ): ITask {
     return {
       description: '',

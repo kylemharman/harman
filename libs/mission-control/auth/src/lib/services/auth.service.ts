@@ -32,7 +32,6 @@ export class AuthService {
   }
 
   async logout(): Promise<void> {
-    console.log('logout');
     await this._afAuth.signOut();
   }
 
@@ -43,8 +42,6 @@ export class AuthService {
       authProvider === 'google'
         ? new firebase.auth.GoogleAuthProvider()
         : new firebase.auth.FacebookAuthProvider();
-
-    console.log('login');
 
     return this._afAuth.signInWithPopup(provider);
   }
@@ -69,11 +66,8 @@ export class AuthService {
     await this._db.set<IUser>(`${RootCollection.Users}/${user.id}`, user);
   }
 
-  async updateUser(user: Partial<IUser>): Promise<void> {
-    await this._db.update<Partial<IUser>>(
-      `${RootCollection.Users}/${user.id}`,
-      user
-    );
+  async updateUser(user: IUser): Promise<void> {
+    await this._db.update<IUser>(`${RootCollection.Users}/${user.id}`, user);
   }
 
   createUser(firebaseUser: firebase.User, name?: string): IUser {

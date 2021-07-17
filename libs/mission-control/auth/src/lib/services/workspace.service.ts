@@ -7,14 +7,36 @@ import {
   WorkspaceCollection,
 } from '@harman/mission-control/core';
 import { FirestoreService } from '@harman/ng-shared';
+import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+import { AuthFacade } from '../store/facades/auth.facade';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WorkspaceService {
-  constructor(private _db: FirestoreService) {}
+  // TODO - move these to a workspace store
+  workspace$: Observable<IWorkspace>;
+  member$: Observable<IMember>;
 
-  createWorkspace(workspaceName: string, user: IUser): IWorkspace {
+  constructor(private _db: FirestoreService, private _auth: AuthFacade) {
+    this.workspace$ = this._auth.user$.pipe(
+      switchMap((user) =>
+        this._db.doc$<IWorkspace>(
+          `${RootCollection.Workspaces}/${user.currentWorkspaceId}`
+        )
+      )
+    );
+    this.member$ = this._auth.user$.pipe(
+      switchMap((user) =>
+        this._db.doc$<IMember>(
+          `${RootCollection.Workspaces}/${user.currentWorkspaceId}/${WorkspaceCollection.Members}/${user.id}`
+        )
+      )
+    );
+  }
+
+  createWorkspace(workspaceName: string, createdBy: string): IWorkspace {
     const id = this._db.generateId();
     const docRef = this._db
       .col<IWorkspace>(RootCollection.Workspaces)
@@ -23,7 +45,7 @@ export class WorkspaceService {
     return {
       name: workspaceName,
       id: docRef.ref.id,
-      createdBy: user.id,
+      createdBy,
     };
   }
 
@@ -42,6 +64,7 @@ export class WorkspaceService {
   ): IMember {
     return {
       id: user.id,
+      path: `${RootCollection.Workspaces}/${user.currentWorkspaceId}/${WorkspaceCollection.Members}/${user.id}`,
       user: `${RootCollection.Users}/${user.id}`,
       email: user.email,
       displayName: user.displayName,
@@ -56,8 +79,6 @@ export class WorkspaceService {
     workspaceID: string,
     member: IMember
   ): Promise<void> {
-    console.log('workspaceID :>> ', workspaceID);
-    console.log('member :>> ', member);
     await this._db.set(
       `${RootCollection.Workspaces}/${workspaceID}/${WorkspaceCollection.Members}/${member.id}`,
       member

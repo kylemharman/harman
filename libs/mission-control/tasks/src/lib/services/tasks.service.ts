@@ -10,6 +10,7 @@ import {
 import { FirestoreService } from '@harman/ng-shared';
 import { snapshot } from '@harman/utils';
 import firebase from 'firebase';
+import { WorkspaceService } from 'libs/mission-control/auth/src/lib/services/workspace.service';
 import { Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { TaskFacade } from '../store/facades/task.facade';
@@ -20,7 +21,8 @@ export class TasksService {
     private _db: FirestoreService,
     private _taskStore: TaskFacade,
     private _snack: MatSnackBar,
-    private _authStore: AuthFacade
+    private _authStore: AuthFacade,
+    private _workspaceService: WorkspaceService
   ) {}
 
   async createTask(name: string): Promise<ITask> {
@@ -32,11 +34,17 @@ export class TasksService {
     const order = await this._getOrderNumber();
     const tasksCollection = await snapshot(this.tasksCollection$());
     const docRef = this._db.col<ITask>(tasksCollection).doc<ITask>(id);
+    const member = await snapshot(this._workspaceService.member$);
     return Task.init({
       name,
       order,
       id: docRef.ref.id,
       path: docRef.ref.path,
+      createdBy: {
+        displayName: member.displayName,
+        profileImage: member.profileImage,
+        path: member.path,
+      },
     });
   }
 
