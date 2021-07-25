@@ -1,0 +1,53 @@
+<mc-auth-page-container [login]="false">
+  <mc-content-box title="Let's Get You Started!">
+    <ha-main-button
+      (click)="googleSignUp()"
+      [fullWidth]="true"
+      type="submit"
+      label="Sign up with Google"
+      icon="assets/buttons/google.svg"
+    >
+    </ha-main-button>
+
+    <ha-word-divider label="OR"></ha-word-divider>
+
+    <form
+      fxLayout="column"
+      fxLayoutGap="16px"
+      [formGroup]="form"
+      (ngSubmit)="onSubmit()"
+    >
+      <!-- email -->
+      <mat-form-field appearance="outline">
+        <mat-label>Confirm Email</mat-label>
+        <input
+          matInput
+          formControlName="email"
+          type="email"
+          placeholder="example@site.com"
+          autocomplete="off"
+        />
+        <mat-error *ngIf="!email.value.length && email.touched">
+          <mat-icon>warning</mat-icon> This field is required!
+        </mat-error>
+        <mat-error
+          *ngIf="email.value.length >= 1 && email.touched && email.invalid"
+        >
+          <mat-icon>warning</mat-icon> Email address invalid!
+        </mat-error>
+      </mat-form-field>
+
+      <ha-main-button
+        [primary]="true"
+        [fullWidth]="true"
+        type="submit"
+        label="Get started!"
+        size="large"
+      ></ha-main-button>
+
+      <mat-error *ngIf="serverErrorMessage$ | async as err">
+        {{ err }}
+      </mat-error>
+    </form>
+  </mc-content-box>
+</mc-auth-page-container>

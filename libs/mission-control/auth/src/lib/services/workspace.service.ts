@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {
+  IInvite,
   IMember,
   IUser,
   IWorkspace,
@@ -7,6 +8,7 @@ import {
   WorkspaceCollection,
 } from '@harman/mission-control/core';
 import { FirestoreService } from '@harman/ng-shared';
+import { snapshot } from '@harman/utils';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { AuthFacade } from '../store/facades/auth.facade';
@@ -82,6 +84,21 @@ export class WorkspaceService {
     await this._db.set(
       `${RootCollection.Workspaces}/${workspaceID}/${WorkspaceCollection.Members}/${member.id}`,
       member
+    );
+  }
+
+  async saveMemberInvite(email: string, role: string): Promise<void> {
+    const workspace = await snapshot(this.workspace$);
+    const member = await snapshot(this.member$);
+    await this._db.add<IInvite>(
+      `${RootCollection.Workspaces}/${workspace.id}/${WorkspaceCollection.Invites}`,
+      {
+        email,
+        role,
+        active: false,
+        workspaceName: workspace.name,
+        workspaceID: workspace.id,
+      }
     );
   }
 }

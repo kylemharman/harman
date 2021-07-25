@@ -1,6 +1,7 @@
 export enum WorkspaceCollection {
   Members = 'members',
   Tasks = 'tasks',
+  Invites = 'invites',
   Config = 'config',
 }
 
@@ -20,4 +21,12 @@ export interface IMember {
   isCreator: boolean;
   workspaceName: string;
   profileImage?: string;
+}
+
+export interface IInvite {
+  email: string;
+  role: string;
+  active: boolean;
+  workspaceName: string;
+  workspaceID: string;
 }

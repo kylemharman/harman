@@ -1,0 +1,31 @@
+<form fxLayout="row" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <!-- email -->
+  <mat-form-field appearance="outline">
+    <mat-label>Email</mat-label>
+    <input
+      matInput
+      formControlName="email"
+      type="email"
+      placeholder="example@site.com"
+      autocomplete="off"
+    />
+    <mat-error *ngIf="!email.value.length && email.touched">
+      <mat-icon>warning</mat-icon> This field is required!
+    </mat-error>
+    <mat-error
+      *ngIf="email.value.length >= 1 && email.touched && email.invalid"
+    >
+      <mat-icon>warning</mat-icon> Email address invalid!
+    </mat-error>
+  </mat-form-field>
+  <!-- members role -->
+  <mat-form-field appearance="outline">
+    <mat-select formControlName="role">
+      <mat-option *ngFor="let role of roles" [value]="role.type">
+        {{ role.type }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <ha-main-button label="Invite" type="submit"></ha-main-button>
+</form>

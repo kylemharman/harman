@@ -1,29 +1,27 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import {
-  AbstractControl,
-  FormBuilder,
   FormGroup,
+  FormBuilder,
   Validators,
+  AbstractControl,
 } from '@angular/forms';
 import { Observable } from 'rxjs';
-
 import { AuthService } from '../../services/auth.service';
 import { AuthFacade } from '../../store/facades/auth.facade';
 
 @Component({
-  selector: 'mc-sign-up',
-  templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.scss'],
+  selector: 'mc-complete-email-link-sign-up',
+  templateUrl: './complete-email-link-sign-up.component.html',
+  styleUrls: ['./complete-email-link-sign-up.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SignUpComponent implements OnInit {
+export class CompleteEmailLinkSignUpComponent implements OnInit {
   form: FormGroup;
-  passwordHidden = true;
   serverErrorMessage$: Observable<string>;
 
   constructor(
-    private _authService: AuthService,
     private _fb: FormBuilder,
+    private _authService: AuthService,
     private _authStore: AuthFacade
   ) {
     this.serverErrorMessage$ = this._authService.serverErrorMessage$;
@@ -32,31 +30,17 @@ export class SignUpComponent implements OnInit {
   ngOnInit(): void {
     const email = localStorage.getItem('emailForSignIn');
     this.form = this._fb.group({
-      fullname: ['', [Validators.required]],
       email: [email ?? '', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
     });
-  }
-
-  get fullname(): AbstractControl {
-    return this.form.get('fullname');
   }
 
   get email(): AbstractControl {
     return this.form.get('email');
   }
 
-  get password(): AbstractControl {
-    return this.form.get('password');
-  }
-
   onSubmit() {
     if (this.form.valid) {
-      this._authStore.signUp(
-        this.fullname.value,
-        this.email.value,
-        this.password.value
-      );
+      // this._authService.verifyEmailAndSignIn(this.email.value, location.href);
     }
   }
 

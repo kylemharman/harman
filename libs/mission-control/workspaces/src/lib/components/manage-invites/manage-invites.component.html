@@ -1,0 +1,26 @@
+<div fxLayout="row" fxLayoutAlign="center start">
+  <!-- <mc-content-box title="Workspace Invites"> -->
+  <ng-container *ngIf="invites$ | async as invites">
+    <h1>Workspace Invites</h1>
+    <div *ngFor="let invite of invites">
+      <p>{{ invite.workspaceName }}</p>
+
+      <ha-main-button
+        [primary]="true"
+        label="Join {{ invite.workspaceName }}"
+        size="large"
+        (click)="joinWorkspace(invite.workspaceID)"
+      >
+      </ha-main-button>
+      <mat-divider></mat-divider>
+    </div>
+  </ng-container>
+  <ha-word-divider>OR</ha-word-divider>
+  <ha-main-button
+    label="Create New Workspace"
+    size="large"
+    (click)="createWorkspace()"
+  >
+  </ha-main-button>
+  <!-- </mc-content-box> -->
+</div>

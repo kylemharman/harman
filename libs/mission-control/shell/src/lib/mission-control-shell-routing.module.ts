@@ -4,6 +4,7 @@ import {
   AuthGuard,
   IsWorkspaceMemberGuard,
 } from '@harman/mission-control/auth';
+import { ManageInvitesComponent } from '@harman/mission-control/workspaces';
 import { AppShellComponent } from './containers/app-shell/app-shell.component';
 
 const routes: Routes = [
@@ -13,6 +14,11 @@ const routes: Routes = [
       import('@harman/mission-control/auth').then(
         (m) => m.MissionControlAuthModule
       ),
+  },
+  {
+    path: 'invites',
+    canActivate: [AuthGuard],
+    component: ManageInvitesComponent,
   },
   {
     path: 'create-workspace',

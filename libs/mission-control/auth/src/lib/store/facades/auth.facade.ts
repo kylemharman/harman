@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { IUser, IWorkspace } from '@harman/mission-control/core';
 import { select, Store } from '@ngrx/store';
 import firebase from 'firebase';
-import { BehaviorSubject } from 'rxjs';
-
 import { AuthActions } from '../actions';
 import { AuthState } from '../reducers';
 import {
@@ -11,6 +9,7 @@ import {
   getIsLoading,
   getIsLoggedIn,
   getUser,
+  invites,
 } from '../selectors/auth.selectors';
 
 @Injectable({ providedIn: 'root' })
@@ -19,6 +18,7 @@ export class AuthFacade {
   isLoggedIn$ = this._store.pipe(select(getIsLoggedIn));
   isLoading$ = this._store.pipe(select(getIsLoading));
   error$ = this._store.pipe(select(getError));
+  invites$ = this._store.pipe(select(invites));
 
   constructor(private _store: Store<AuthState>) {}
 

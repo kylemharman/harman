@@ -9,14 +9,14 @@
     <ha-close-button (click)="closeMenu()" size="medium"></ha-close-button>
   </span>
   <div
-    *ngIf="user$ | async as user"
+    *ngIf="workspace$ | async as workspace"
     class="menu-container mat-small"
     fxLayout="column"
     fxLayoutGap="12px"
     (click)="$event.stopPropagation()"
   >
-    <a [routerLink]="['/', user.id, 'settings', 'profile']">My Settings</a>
-    <a [routerLink]="['/', user.id, 'notifications']">Notifications</a>
+    <a [routerLink]="['/', workspace.id, 'settings', 'profile']">My Settings</a>
+    <a [routerLink]="['/', workspace.id, 'team']">Team</a>
     <a (click)="logout()">Logout</a>
     <mat-divider></mat-divider>
     <ha-toggle (toggle)="darkMode($event)">Dark Mode</ha-toggle>

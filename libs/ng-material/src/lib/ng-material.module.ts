@@ -14,6 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSelectModule } from '@angular/material/select';
 
 const modules = [
   MatButtonModule,
@@ -31,6 +32,7 @@ const modules = [
   FlexLayoutModule,
   MatButtonToggleModule,
   MatAutocompleteModule,
+  MatSelectModule,
 ];
 
 @NgModule({

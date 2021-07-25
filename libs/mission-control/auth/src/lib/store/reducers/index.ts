@@ -1,4 +1,4 @@
-import { IUser } from '@harman/mission-control/core';
+import { IInvite, IUser } from '@harman/mission-control/core';
 import { createReducer, on } from '@ngrx/store';
 import { AuthActions } from '../actions';
 
@@ -8,6 +8,7 @@ export interface AuthState {
   isLoggedIn: boolean;
   isLoading: boolean;
   error: unknown;
+  invites: IInvite[];
 }
 
 export const initialAuthState: AuthState = {
@@ -15,6 +16,7 @@ export const initialAuthState: AuthState = {
   isLoggedIn: false,
   isLoading: true,
   error: null,
+  invites: [],
 };
 
 export const authReducer = createReducer(
@@ -24,10 +26,15 @@ export const authReducer = createReducer(
     isLoggedIn: true,
     isLoading: false,
     error: null,
+    invites: [],
   })),
   on(AuthActions.updateUser, (state, { user }) => ({
     ...state,
     user,
+  })),
+  on(AuthActions.setWorkspaceInvites, (state, { invites }) => ({
+    ...state,
+    invites,
   })),
   on(AuthActions.loginFailed, (state, _action) => ({
     ...state,

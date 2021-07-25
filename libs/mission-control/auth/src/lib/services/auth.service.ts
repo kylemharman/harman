@@ -1,11 +1,19 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { IUser, RootCollection } from '@harman/mission-control/core';
+import { AngularFirestore } from '@angular/fire/firestore';
+import {
+  IInvite,
+  IUser,
+  IWorkspace,
+  RootCollection,
+  WorkspaceCollection,
+} from '@harman/mission-control/core';
 import { FirestoreService } from '@harman/ng-shared';
 import { toTimestamp } from '@harman/utils';
 import firebase from 'firebase';
 import * as moment from 'moment';
 import { Observable, Subject } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -14,7 +22,8 @@ export class AuthService {
 
   constructor(
     private _db: FirestoreService,
-    private _afAuth: AngularFireAuth
+    private _afAuth: AngularFireAuth,
+    private _afs: AngularFirestore
   ) {}
 
   async signUp(
@@ -63,11 +72,51 @@ export class AuthService {
   }
 
   async saveUser(user: IUser): Promise<void> {
+    console.log('user :>> ', user);
     await this._db.set<IUser>(`${RootCollection.Users}/${user.id}`, user);
   }
 
   async updateUser(user: IUser): Promise<void> {
     await this._db.update<IUser>(`${RootCollection.Users}/${user.id}`, user);
+  }
+
+  // async inviteMember(email: string): Promise<void> {
+  //   const actionCodeSettings = {
+  //     // TODO - set enviroment variable for this
+  //     url: 'http://localhost:4900/signup',
+  //     handleCodeInApp: true,
+  //   };
+  //   if (!email) {
+  //     return;
+  //   }
+  //   try {
+  //     await this._afAuth.sendSignInLinkToEmail(email, actionCodeSettings);
+  //     localStorage.setItem('emailForSignIn', email);
+  //   } catch (error) {
+  //     this.serverErrorMessage$.next(error.message);
+  //   }
+  // }
+
+  // async verifyEmailAndSignIn(email: string, href: string): Promise<void> {
+  //   if (this._afAuth.isSignInWithEmailLink(href)) {
+  //     try {
+  //       await this._afAuth.signInWithEmailLink(email, href);
+  //       const user = this.createUser(authUser.user);
+
+  //     } catch (error) {
+  //       this.serverErrorMessage$.next(error.message);
+  //     }
+  //   }
+  // }
+
+  getUsersWorkspaceInvites$(email: string): Observable<IInvite[] | undefined> {
+    console.log('email :>> ', email);
+
+    return this._afs
+      .collectionGroup<IInvite>(WorkspaceCollection.Invites, (ref) =>
+        ref.where('email', '==', email)
+      )
+      .valueChanges();
   }
 
   createUser(firebaseUser: firebase.User, name?: string): IUser {

@@ -1,4 +1,4 @@
-import { IUser, IWorkspace } from '@harman/mission-control/core';
+import { IInvite, IUser, IWorkspace } from '@harman/mission-control/core';
 import { createAction, props } from '@ngrx/store';
 import firebase from 'firebase';
 
@@ -84,6 +84,16 @@ export const saveWorkspace = createAction(
 export const saveWorkspaceCreator = createAction(
   '[Auth] Save Workspace Creator As Member',
   props<{ workspace: IWorkspace; user: IUser }>()
+);
+
+export const getWorkspaceInvites = createAction(
+  '[Auth] Get Workspace Invites',
+  props<{ email: string }>()
+);
+
+export const setWorkspaceInvites = createAction(
+  '[Auth] Set Invites',
+  props<{ invites: IInvite[] }>()
 );
 
 export const getUser = createAction('[Auth] Get User');
