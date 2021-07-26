@@ -1,5 +1,5 @@
 <mc-auth-page-container [login]="false">
-  <mc-content-box title="Let's Get You Started!">
+  <mc-auth-form-container title="Let's Get You Started!">
     <ha-main-button
       (click)="googleSignUp()"
       [fullWidth]="true"
@@ -49,5 +49,5 @@
         {{ err }}
       </mat-error>
     </form>
-  </mc-content-box>
+  </mc-auth-form-container>
 </mc-auth-page-container>
