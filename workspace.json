@@ -247,31 +247,6 @@
         }
       }
     },
-    "mission-control/shared": {
-      "projectType": "library",
-      "root": "libs/mission-control/shared",
-      "sourceRoot": "libs/mission-control/shared/src",
-      "prefix": "mc",
-      "targets": {
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/mission-control/shared"],
-          "options": {
-            "jestConfig": "libs/mission-control/shared/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/mission-control/shared/src/**/*.ts",
-              "libs/mission-control/shared/src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
     "mission-control/core": {
       "root": "libs/mission-control/core",
       "sourceRoot": "libs/mission-control/core/src",
@@ -363,6 +338,31 @@
             "lintFilePatterns": [
               "libs/mission-control/dashboard/src/**/*.ts",
               "libs/mission-control/dashboard/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "mission-control/settings": {
+      "projectType": "library",
+      "root": "libs/mission-control/settings",
+      "sourceRoot": "libs/mission-control/settings/src",
+      "prefix": "mc",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mission-control/settings"],
+          "options": {
+            "jestConfig": "libs/mission-control/settings/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/mission-control/settings/src/**/*.ts",
+              "libs/mission-control/settings/src/**/*.html"
             ]
           }
         }

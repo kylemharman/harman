@@ -24,9 +24,6 @@
       "@harman/mission-control/auth": [
         "libs/mission-control/auth/src/index.ts"
       ],
-      "@harman/mission-control/shared": [
-        "libs/mission-control/shared/src/index.ts"
-      ],
       "@harman/mission-control/core": [
         "libs/mission-control/core/src/index.ts"
       ],
@@ -38,6 +35,9 @@
       ],
       "@harman/mission-control/dashboard": [
         "libs/mission-control/dashboard/src/index.ts"
+      ],
+      "@harman/mission-control/settings": [
+        "libs/mission-control/settings/src/index.ts"
       ]
     }
   },

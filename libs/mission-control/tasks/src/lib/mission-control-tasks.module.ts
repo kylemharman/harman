@@ -6,7 +6,6 @@ import { NgMaterialModule } from '@harman/ng-material';
 import { NgSharedModule } from '@harman/ng-shared';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { TooltipModule } from 'ng2-tooltip-directive';
 import { MomentModule } from 'ngx-moment';
 
 import { CreateTaskComponent } from './components/create-task/create-task.component';
@@ -34,7 +33,6 @@ import * as fromTasks from './store/reducers';
     NgSharedModule,
     NgMaterialModule,
     MomentModule,
-    TooltipModule,
     ReactiveFormsModule,
     StoreModule.forFeature(fromTasks.tasksFeatureKey, fromTasks.tasksReducers),
     EffectsModule.forFeature([TasksEffects]),

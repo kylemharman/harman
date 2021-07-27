@@ -11,6 +11,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { NgMaterialModule } from '@harman/ng-material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MomentModule } from 'ngx-moment';
+import { ContentContainerComponent } from './layout/content-container/content-container.component';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { MomentModule } from 'ngx-moment';
     TimeSelectorComponent,
     ToggleComponent,
     WordDividerComponent,
+    ContentContainerComponent,
   ],
   exports: [
     AvatarComponent,
@@ -37,6 +39,7 @@ import { MomentModule } from 'ngx-moment';
     TimeSelectorComponent,
     ToggleComponent,
     WordDividerComponent,
+    ContentContainerComponent,
   ],
   providers: [],
 })

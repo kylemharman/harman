@@ -1,5 +1,5 @@
 <mc-auth-page-container>
-  <mc-auth-form-container title="Welcome Aboard!">
+  <mc-content-container title="Welcome Aboard!">
     <div *ngIf="user$ | async as user">
       <p>
         We have sent a confirmation email to
@@ -25,5 +25,5 @@
     <button mat-button (click)="sendVerificationEmail()">
       Resend verification email
     </button>
-  </mc-auth-form-container>
+  </mc-content-container>
 </mc-auth-page-container>

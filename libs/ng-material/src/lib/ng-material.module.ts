@@ -15,6 +15,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
+import { TooltipModule } from 'ng2-tooltip-directive';
 
 const modules = [
   MatButtonModule,
@@ -33,6 +34,7 @@ const modules = [
   MatButtonToggleModule,
   MatAutocompleteModule,
   MatSelectModule,
+  TooltipModule,
 ];
 
 @NgModule({

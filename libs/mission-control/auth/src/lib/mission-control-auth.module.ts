@@ -5,7 +5,6 @@ import { NgMaterialModule } from '@harman/ng-material';
 import { NgSharedModule } from '@harman/ng-shared';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { AuthFormContainerComponent } from './components/auth-form-container/auth-form-container.component';
 
 import { AuthPageContainerComponent } from './components/auth-page-container/auth-page-container.component';
 import { CompleteEmailLinkSignUpComponent } from './components/complete-email-link-sign-up/complete-email-link-sign-up.component';
@@ -34,7 +33,6 @@ import * as fromAuth from './store/reducers';
     VerifyEmailComponent,
     AuthPageContainerComponent,
     CompleteEmailLinkSignUpComponent,
-    AuthFormContainerComponent,
   ],
 })
 export class MissionControlAuthModule {}

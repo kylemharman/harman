@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'mission-control-shared',
+  displayName: 'mission-control-settings',
   preset: '../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -14,7 +14,7 @@ module.exports = {
       },
     },
   },
-  coverageDirectory: '../../../coverage/libs/mission-control/shared',
+  coverageDirectory: '../../../coverage/libs/mission-control/settings',
   snapshotSerializers: [
     'jest-preset-angular/build/serializers/no-ng-attributes',
     'jest-preset-angular/build/serializers/ng-snapshot',

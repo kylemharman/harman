@@ -35,9 +35,6 @@
     "mission-control/auth": {
       "tags": ["scope:mission-control"]
     },
-    "mission-control/shared": {
-      "tags": ["scope:mission-control"]
-    },
     "ng-material": {
       "tags": ["scope:shared"]
     },
@@ -54,6 +51,9 @@
       "tags": ["scope:mission-control"]
     },
     "mission-control/dashboard": {
+      "tags": ["scope:mission-control"]
+    },
+    "mission-control/settings": {
       "tags": ["scope:mission-control"]
     }
   }
